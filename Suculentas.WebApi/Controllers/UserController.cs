@@ -4,6 +4,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -14,7 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Suculentas.Domain.Identity;
 using Suculentas.WebApi.Dtos;
-using Suculentas.WebApi.Helpers;
+using Suculentas.WebApi.Utils;
 
 namespace Suculentas.WebApi.Controllers
 {
@@ -26,6 +27,8 @@ namespace Suculentas.WebApi.Controllers
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly IMapper _mapper;
+        private readonly EnvioEmail _envio = new EnvioEmail();
+        private readonly CorpoEmail _bodyEmail = new CorpoEmail();
 
         public UserController(IConfiguration config,
                               UserManager<User> userManager,
@@ -125,12 +128,15 @@ namespace Suculentas.WebApi.Controllers
 
             if(user != null) 
             {
-                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-                var resetURL = new ResetarSenhaDto{ Token = token, Email = EsqueciSenhaDto.Email};
+                string token = await _userManager.GeneratePasswordResetTokenAsync(user);
 
-                EnvioEmail email = new EnvioEmail();
+                string tokenWeb = HttpUtility.UrlEncode(token);
 
-                email.EnviarEmail(user.Email, "Esqueci a senha - Suculentas da Rô", "Testando a mensagem");
+                var resetURL = "https://suculentasdaro.com.br/user/reset/" + user.Email + "/" + tokenWeb;
+
+                string corpoEmail = _bodyEmail.BodyEsqueciSenha(resetURL, user.FullName);
+
+                _envio.EnviarEmail(user.Email, "[Suculentas da Rô] Solicitação para redefinir sua senha" , corpoEmail);
 
                 return Ok(new ResetarSenhaDto { Token = token, Email = EsqueciSenhaDto.Email});
 

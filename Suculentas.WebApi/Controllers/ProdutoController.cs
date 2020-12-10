@@ -75,7 +75,7 @@ namespace Suculentas.WebApi.Controllers
                     return Created($"/produto/{model.Id}",  _mapper.Map<ProdutoDto>(produto));
                 }
             }
-            catch (System.Exception) 
+            catch (System.Exception e) 
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
             }
@@ -108,8 +108,6 @@ namespace Suculentas.WebApi.Controllers
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou " + ex);
             }
-
-            return BadRequest("Erro ao tentar realizar upload");
         }
 
         [HttpPut("{Id}")]

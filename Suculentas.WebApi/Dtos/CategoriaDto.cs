@@ -8,7 +8,6 @@ namespace Suculentas.WebApi.Dtos
         public string Nome { get; set; }
         public string Descricao { get; set; }
         public bool Ativo { get; set; }
-        public int TipoCategoriaId { get; set; }
         public List<ProdutoDto> Produtos { get; set; }
     }
 }

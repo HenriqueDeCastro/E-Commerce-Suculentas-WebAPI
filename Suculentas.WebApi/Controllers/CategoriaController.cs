@@ -52,9 +52,44 @@ namespace Suculentas.WebApi.Controllers
 
                 return Ok(results);
             }
-            catch (System.Exception) 
+            catch (System.Exception e)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou: " + e.Message);
+            }
+        }
+
+        [HttpGet("getCliente/{Id}")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetByIdCliente(int Id)
+        {
+            try
+            {
+                var categorias = await _repo.GetAllCategoriaByIdCliente(Id);
+
+                var results = _mapper.Map<CategoriaDto>(categorias);
+
+                return Ok(results);
+            }
+            catch (System.Exception e)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou: " + e.Message);
+            }
+        }
+
+        [HttpGet("getEmpresa/{Id}")]
+        public async Task<IActionResult> GetByIdEmpresa(int Id)
+        {
+            try
+            {
+                var categorias = await _repo.GetAllCategoriaByIdEmpresa(Id);
+
+                var results = _mapper.Map<CategoriaDto>(categorias);
+
+                return Ok(results);
+            }
+            catch (System.Exception e) 
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou: " +  e.Message);
             }
         }
 
@@ -71,6 +106,41 @@ namespace Suculentas.WebApi.Controllers
                 return Ok(results);
             }
             catch (System.Exception) 
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
+            }
+        }
+
+        [HttpGet("getPagInicialEmpresa")]
+        public async Task<IActionResult> GetPagInicialEmpresa()
+        {
+            try
+            {
+                var categorias = await _repo.GetAllCategoriasPagInicialEmpresa();
+
+                var results = _mapper.Map<CategoriaDto[]>(categorias);
+
+                return Ok(results);
+            }
+            catch (System.Exception)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
+            }
+        }
+
+        [HttpGet("getPagInicial")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetPagInicial()
+        {
+            try
+            {
+                var categorias = await _repo.GetAllCategoriasPagInicial();
+
+                var results = _mapper.Map<CategoriaDto[]>(categorias);
+
+                return Ok(results);
+            }
+            catch (System.Exception)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
             }

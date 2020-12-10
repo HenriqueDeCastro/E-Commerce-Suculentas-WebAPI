@@ -1,7 +1,7 @@
 using System.Net;
 using System.Net.Mail;
 
-namespace Suculentas.WebApi.Helpers
+namespace Suculentas.WebApi.Utils
 {
     public class EnvioEmail
     {
@@ -27,13 +27,14 @@ namespace Suculentas.WebApi.Helpers
                 mensagem.From = new MailAddress("suculentasRo@gmail.com");
                 mensagem.Subject = Titulo;
                 mensagem.Body = Mensagem;
+                mensagem.IsBodyHtml = true;
                 mensagem.To.Add(EmailFrom);
 
                 cliente.Send(mensagem);
 
                 return true;
             }
-            catch (System.Exception)
+            catch (System.Exception e)
             {
                 throw;
             }

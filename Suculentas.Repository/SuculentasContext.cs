@@ -22,7 +22,7 @@ namespace Suculentas.Repository
         public DbSet<Pedido> Pedidos { get; set; }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Status> Status { get; set; }
-        public DbSet<TipoCategoria> TipoCategoria { get; set; }
+        public DbSet<TipoProduto> TipoProduto { get; set; }
         public DbSet<Venda> Vendas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

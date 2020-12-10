@@ -15,7 +15,11 @@ namespace Suculentas.Repository
         //CATEGORIA
         Task<Categoria[]> GetAllCategorias();        
         Task<Categoria[]> GetAllCategoriasSemProdutos();        
-        Task<Categoria> GetAllCategoriaById(int Id);        
+        Task<Categoria[]> GetAllCategoriasPagInicial();
+        Task<Categoria[]> GetAllCategoriasPagInicialEmpresa();
+        Task<Categoria> GetAllCategoriaById(int Id);
+        Task<Categoria> GetAllCategoriaByIdCliente(int Id);        
+        Task<Categoria> GetAllCategoriaByIdEmpresa(int Id);
 
         //CIDADE
         Task<Cidade> GetAllCidadeById(int Id);        
@@ -54,10 +58,10 @@ namespace Suculentas.Repository
         Task<Status[]> GetAllStatus();       
         Task<Status[]> GetAllStatusById(int Id);  
 
-        //TIPO CATEGORIA
-        Task<TipoCategoria[]> GetAllTipoCategoria();       
-        Task<TipoCategoria[]> GetAllTipoCategoriaSemCategoria();       
-        Task<TipoCategoria> GetAllTipoCategoriaById(int Id);       
+        //TIPO PRODUTO
+        Task<TipoProduto[]> GetAllTipoProduto();       
+        Task<TipoProduto[]> GetAllTipoProdutoSemProduto();       
+        Task<TipoProduto> GetAllTipoProdutoById(int Id);       
 
         //VENDA
         Task<Venda[]> GetAllVenda();       

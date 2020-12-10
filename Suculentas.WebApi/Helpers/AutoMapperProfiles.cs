@@ -18,7 +18,7 @@ namespace Suculentas.WebApi.Helpers
             CreateMap<Pedido, PedidoDto>().ReverseMap();
             CreateMap<Produto, ProdutoDto>().ReverseMap();
             CreateMap<Status, StatusDto>().ReverseMap();
-            CreateMap<TipoCategoria, TipoCategoriaDto>().ReverseMap();
+            CreateMap<TipoProduto, TipoProdutoDto>().ReverseMap();
             CreateMap<Venda, VendaDto>().ReverseMap();
             CreateMap<User, UserDto>().ReverseMap();
             CreateMap<User, UserLoginDto>().ReverseMap();

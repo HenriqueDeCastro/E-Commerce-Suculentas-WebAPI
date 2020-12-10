@@ -41,6 +41,9 @@ namespace Suculentas.WebApi
         {
             services.AddDbContext<SuculentasContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            // services.AddResponseCaching();
+            services.AddControllers();
+
             IdentityBuilder builder = services.AddIdentityCore<User>(options => 
             {
                 //options.SignIn.RequireConfirmedEmail = true;
@@ -116,7 +119,9 @@ namespace Suculentas.WebApi
             
             //app.UseHttpsRedirection();
 
-            //app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
+            //app.UseCors(builder => builder.WithOrigins("https://suculentasdaro.com.br").AllowAnyMethod().AllowAnyHeader());
+
+            //app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader());
 
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 

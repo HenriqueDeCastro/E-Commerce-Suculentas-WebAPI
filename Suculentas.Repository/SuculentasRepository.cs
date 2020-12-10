@@ -37,10 +37,36 @@ namespace Suculentas.Repository
         }
 
         //CATEGORIA
-        public async Task<Categoria> GetAllCategoriaById(int Id)
+        public async Task<Categoria> GetAllCategoriaByIdCliente(int Id)
+        {
+            IQueryable<Categoria> categorias = _Context.Categorias.Select(c => new Categoria
+            {
+                Id = c.Id,
+                Nome = c.Nome,
+                Descricao = c.Descricao,
+                Ativo = c.Ativo,
+                Produtos = _Context.Produtos.Where(p => p.CategoriaId == c.Id && p.Ativo == true && (p.TipoProdutoId == 1? true : p.Estoque > 0)).OrderByDescending(p => p.Id).ToList()
+            });
+
+            categorias = categorias.Where(c => c.Id == Id);
+
+            return await categorias.FirstOrDefaultAsync();
+        }
+
+        public async Task<Categoria> GetAllCategoriaByIdEmpresa(int Id)
         {
             IQueryable<Categoria> query = _Context.Categorias
                 .Include(c => c.Produtos);
+
+            query = query.OrderBy(c => c.Id)
+                .Where(c => c.Id == Id);
+
+            return await query.FirstOrDefaultAsync();
+        }
+
+        public async Task<Categoria> GetAllCategoriaById(int Id)
+        {
+            IQueryable<Categoria> query = _Context.Categorias;
 
             query = query.OrderByDescending(c => c.Id)
                 .Where(c => c.Id == Id);
@@ -65,7 +91,39 @@ namespace Suculentas.Repository
 
             query = query.OrderBy(c => c.Nome);
 
-            return await query.ToArrayAsync();        }
+            return await query.ToArrayAsync();    
+        }
+
+        public async Task<Categoria[]> GetAllCategoriasPagInicialEmpresa()
+        {
+            IQueryable<Categoria> categorias = _Context.Categorias.Select(c => new Categoria
+            {
+                Id = c.Id,
+                Nome = c.Nome,
+                Descricao = c.Descricao,
+                Ativo = c.Ativo,
+                Produtos = _Context.Produtos.Where(p => p.CategoriaId == c.Id).OrderByDescending(p => p.Id).Take(4).ToList()
+            });
+
+            categorias = categorias.OrderBy(c => c.Nome);
+
+            return await categorias.ToArrayAsync();
+        }
+
+        public async Task<Categoria[]> GetAllCategoriasPagInicial()
+        {
+            IQueryable<Categoria> categorias = _Context.Categorias.Select(c => new Categoria {
+                Id = c.Id,
+                Nome = c.Nome,
+                Descricao = c.Descricao,
+                Ativo = c.Ativo,
+                Produtos = _Context.Produtos.Where(p => p.CategoriaId == c.Id && p.Ativo == true && (p.TipoProdutoId == 1? true : p.Estoque > 0)).OrderByDescending(p => p.Id).Take(4).ToList()
+            });
+
+            categorias = categorias.Where(c => c.Ativo == true).OrderBy(c => c.Nome);
+
+            return await categorias.ToArrayAsync();
+        }
 
         //CIDADE
         public async Task<Cidade[]> GetAllCidadeByEstadoId(int EstadoId)
@@ -274,34 +332,36 @@ namespace Suculentas.Repository
             return await query.ToArrayAsync();        
         }
 
-        //TIPO CATEGORIA
-        public async Task<TipoCategoria[]> GetAllTipoCategoria()
+        //TIPO PRODUTO
+        public async Task<TipoProduto[]> GetAllTipoProduto()
         {
-            IQueryable<TipoCategoria> query = _Context.TipoCategoria
-                .Include(c => c.Categorias);
+            IQueryable<TipoProduto> query = _Context.TipoProduto
+                .Include(c => c.Produtos);
 
             query = query.OrderBy(c => c.Nome);
 
             return await query.ToArrayAsync();        
         }
 
-        public async Task<TipoCategoria[]> GetAllTipoCategoriaSemCategoria()
+        public async Task<TipoProduto[]> GetAllTipoProdutoSemProduto()
         {
-            IQueryable<TipoCategoria> query = _Context.TipoCategoria;
+            IQueryable<TipoProduto> query = _Context.TipoProduto;
 
             query = query.OrderBy(c => c.Nome);
 
-            return await query.ToArrayAsync();        }
+            return await query.ToArrayAsync();        
+        }
 
-        public async Task<TipoCategoria> GetAllTipoCategoriaById(int Id)
+        public async Task<TipoProduto> GetAllTipoProdutoById(int Id)
         {
-            IQueryable<TipoCategoria> query = _Context.TipoCategoria
-                .Include(c => c.Categorias);
+            IQueryable<TipoProduto> query = _Context.TipoProduto
+                .Include(c => c.Produtos);
 
             query = query.OrderBy(c => c.Nome)
                 .Where(c => c.Id == Id);
 
-            return await query.FirstOrDefaultAsync();        }
+            return await query.FirstOrDefaultAsync();        
+        }
 
         //VENDA
         public async Task<Venda[]> GetAllVenda()

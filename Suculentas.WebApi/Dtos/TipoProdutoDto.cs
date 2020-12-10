@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 
-namespace Suculentas.Domain
+namespace Suculentas.WebApi.Dtos
 {
-    public class TipoCategoria
+    public class TipoProdutoDto
     {
         public int Id { get; set; }
         public string Nome { get; set; }
-        public List<Categoria> Categorias { get; set; }
+        public List<ProdutoDto> Produtos { get; set; }
     }
 }

@@ -10,12 +10,12 @@ namespace Suculentas.WebApi.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class TipoCategoriaController : ControllerBase
+    public class TipoProdutoController : ControllerBase
     {
         private readonly ISuculentasRepository _repo;
         private readonly IMapper _mapper;
 
-        public TipoCategoriaController(ISuculentasRepository repo, IMapper mapper)
+        public TipoProdutoController(ISuculentasRepository repo, IMapper mapper)
         {
             _repo = repo;
             _mapper = mapper;
@@ -26,9 +26,9 @@ namespace Suculentas.WebApi.Controllers
         {
             try
             {
-                var tipoCategoria = await _repo.GetAllTipoCategoria();
+                var tipoproduto = await _repo.GetAllTipoProduto();
 
-                var results = _mapper.Map<TipoCategoriaDto[]>(tipoCategoria);
+                var results = _mapper.Map<TipoProdutoDto[]>(tipoproduto);
 
                 return Ok(results);
             }
@@ -43,9 +43,9 @@ namespace Suculentas.WebApi.Controllers
         {
             try
             {
-                var tipoCategoria = await _repo.GetAllTipoCategoriaById(Id);
+                var tipoproduto = await _repo.GetAllTipoProdutoById(Id);
 
-                var results = _mapper.Map<TipoCategoriaDto>(tipoCategoria);
+                var results = _mapper.Map<TipoProdutoDto>(tipoproduto);
 
                 return Ok(results);
             }
@@ -55,14 +55,14 @@ namespace Suculentas.WebApi.Controllers
             }
         }
 
-        [HttpGet("getSemCategoria")]
+        [HttpGet("getSemProduto")]
         public async Task<IActionResult> GetSemProduto()
         {
             try
             {
-                var tipoCategoria = await _repo.GetAllTipoCategoriaSemCategoria();
+                var tipoproduto = await _repo.GetAllTipoProdutoSemProduto();
 
-                var results = _mapper.Map<TipoCategoriaDto[]>(tipoCategoria);
+                var results = _mapper.Map<TipoProdutoDto[]>(tipoproduto);
 
                 return Ok(results);
             }
@@ -73,17 +73,17 @@ namespace Suculentas.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(TipoCategoriaDto model)
+        public async Task<IActionResult> Post(TipoProdutoDto model)
         {
             try
             {
-                var tipoCategoria = _mapper.Map<TipoCategoria>(model);
+                var tipoproduto = _mapper.Map<TipoProduto>(model);
 
-                _repo.Add(tipoCategoria);
+                _repo.Add(tipoproduto);
 
                 if(await _repo.SaveChangesAsync())
                 {
-                    return Created($"/tipocategoria/{model.Id}",  _mapper.Map<TipoCategoriaDto>(tipoCategoria));
+                    return Created($"/tipoproduto/{model.Id}",  _mapper.Map<TipoProdutoDto>(tipoproduto));
                 }
             }
             catch (System.Exception) 
@@ -95,24 +95,24 @@ namespace Suculentas.WebApi.Controllers
         }
 
         [HttpPut("{Id}")]
-        public async Task<IActionResult> Put(int Id, TipoCategoriaDto model)
+        public async Task<IActionResult> Put(int Id, TipoProdutoDto model)
         {
             try
             {
-                var tipoCategoria = await _repo.GetAllTipoCategoriaById(Id);
+                var tipoproduto = await _repo.GetAllTipoProdutoById(Id);
 
-                if(tipoCategoria == null) 
+                if(tipoproduto == null) 
                 {
                     return NotFound();
                 }
 
-                _mapper.Map(model, tipoCategoria);
+                _mapper.Map(model, tipoproduto);
 
-                _repo.Update(tipoCategoria);
+                _repo.Update(tipoproduto);
 
                 if(await _repo.SaveChangesAsync())
                 {
-                    return Created($"/tipocategoria/{model.Id}",  _mapper.Map<TipoCategoriaDto>(tipoCategoria));
+                    return Created($"/tipoproduto/{model.Id}",  _mapper.Map<TipoProdutoDto>(tipoproduto));
                 }
             }
             catch (System.Exception) 
@@ -128,13 +128,13 @@ namespace Suculentas.WebApi.Controllers
         {
             try
             {
-                var tipoCategoria = await _repo.GetAllTipoCategoriaById(Id);
+                var tipoproduto = await _repo.GetAllTipoProdutoById(Id);
 
-                if(tipoCategoria == null) 
+                if(tipoproduto == null) 
                 {
                     return NotFound();
                 }
-                _repo.Delete(tipoCategoria);
+                _repo.Delete(tipoproduto);
 
                 if(await _repo.SaveChangesAsync())
                 {
