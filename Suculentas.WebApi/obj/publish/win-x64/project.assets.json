@@ -1511,6 +1511,19 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "Suculentas.Business/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "Suculentas.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Suculentas.Business.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Suculentas.Business.dll": {}
+        }
+      },
       "Suculentas.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
@@ -1522,6 +1535,26 @@
         },
         "runtime": {
           "bin/placeholder/Suculentas.Domain.dll": {}
+        }
+      },
+      "Suculentas.Email/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/Suculentas.Email.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Suculentas.Email.dll": {}
+        }
+      },
+      "Suculentas.PagSeguro/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/Suculentas.PagSeguro.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Suculentas.PagSeguro.dll": {}
         }
       },
       "Suculentas.Repository/1.0.0": {
@@ -3245,6 +3278,19 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "Suculentas.Business/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "dependencies": {
+          "Suculentas.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Suculentas.Business.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Suculentas.Business.dll": {}
+        }
+      },
       "Suculentas.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.1",
@@ -3256,6 +3302,26 @@
         },
         "runtime": {
           "bin/placeholder/Suculentas.Domain.dll": {}
+        }
+      },
+      "Suculentas.Email/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/Suculentas.Email.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Suculentas.Email.dll": {}
+        }
+      },
+      "Suculentas.PagSeguro/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/Suculentas.PagSeguro.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Suculentas.PagSeguro.dll": {}
         }
       },
       "Suculentas.Repository/1.0.0": {
@@ -7932,10 +7998,25 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
+    "Suculentas.Business/1.0.0": {
+      "type": "project",
+      "path": "../Suculentas.Business/Suculentas.Business.csproj",
+      "msbuildProject": "../Suculentas.Business/Suculentas.Business.csproj"
+    },
     "Suculentas.Domain/1.0.0": {
       "type": "project",
       "path": "../Suculentas.Domain/Suculentas.Domain.csproj",
       "msbuildProject": "../Suculentas.Domain/Suculentas.Domain.csproj"
+    },
+    "Suculentas.Email/1.0.0": {
+      "type": "project",
+      "path": "../Suculentas.Email/Suculentas.Email.csproj",
+      "msbuildProject": "../Suculentas.Email/Suculentas.Email.csproj"
+    },
+    "Suculentas.PagSeguro/1.0.0": {
+      "type": "project",
+      "path": "../Suculentas.PagSeguro/Suculentas.PagSeguro.csproj",
+      "msbuildProject": "../Suculentas.PagSeguro/Suculentas.PagSeguro.csproj"
     },
     "Suculentas.Repository/1.0.0": {
       "type": "project",
@@ -7951,13 +8032,17 @@
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 3.1.7",
       "Microsoft.EntityFrameworkCore.Design >= 3.1.7",
       "Microsoft.EntityFrameworkCore.SqlServer >= 3.1.7",
+      "Suculentas.Business >= 1.0.0",
       "Suculentas.Domain >= 1.0.0",
+      "Suculentas.Email >= 1.0.0",
+      "Suculentas.PagSeguro >= 1.0.0",
       "Suculentas.Repository >= 1.0.0"
     ]
   },
   "packageFolders": {
     "C:\\Users\\SAMSUNG\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -7970,11 +8055,13 @@
       "outputPath": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.WebApi\\obj\\publish\\win-x64\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
         "C:\\Users\\SAMSUNG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -7987,9 +8074,19 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {
+            "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Business\\Suculentas.Business.csproj": {
+              "projectPath": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Business\\Suculentas.Business.csproj"
+            },
             "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Domain\\Suculentas.Domain.csproj": {
               "projectPath": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Domain\\Suculentas.Domain.csproj"
+            },
+            "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Email\\Suculentas.Email.csproj": {
+              "projectPath": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Email\\Suculentas.Email.csproj"
+            },
+            "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.PagSeguro\\Suculentas.PagSeguro.csproj": {
+              "projectPath": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.PagSeguro\\Suculentas.PagSeguro.csproj"
             },
             "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Repository\\Suculentas.Repository.csproj": {
               "projectPath": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Repository\\Suculentas.Repository.csproj"
@@ -8005,6 +8102,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "AutoMapper": {
             "target": "Package",
@@ -8044,15 +8142,15 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-            "version": "[3.1.8, 3.1.8]"
+            "version": "[3.1.15, 3.1.15]"
           },
           {
             "name": "Microsoft.NETCore.App.Runtime.win-x64",
-            "version": "[3.1.8, 3.1.8]"
+            "version": "[3.1.15, 3.1.15]"
           },
           {
             "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
-            "version": "[3.1.8, 3.1.8]"
+            "version": "[3.1.15, 3.1.15]"
           }
         ],
         "frameworkReferences": {
@@ -8063,7 +8161,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.300\\RuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {

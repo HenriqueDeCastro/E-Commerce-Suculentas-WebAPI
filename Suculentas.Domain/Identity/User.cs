@@ -14,7 +14,7 @@ namespace Suculentas.Domain.Identity
         public string CPF { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime DataNascimento { get; set; }
+        public DateTime? DataNascimento { get; set; }
 
         public List<UserRole> UserRoles { get; set; }
         public List<Venda> Vendas { get; set; }

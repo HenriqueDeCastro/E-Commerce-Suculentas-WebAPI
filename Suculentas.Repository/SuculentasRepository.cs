@@ -1,17 +1,26 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Suculentas.Domain;
+using Suculentas.Domain.Identity;
+using Suculentas.Domain.Pagination;
 
 namespace Suculentas.Repository
 {
     public class SuculentasRepository : ISuculentasRepository
     {
         private readonly SuculentasContext _Context;
+        private readonly IConfiguration _config;
 
         //GERAL
-        public SuculentasRepository(SuculentasContext context)
+        public SuculentasRepository(SuculentasContext context, IConfiguration config)
         {
+            _config = config;
             _Context = context;
             _Context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
@@ -37,31 +46,96 @@ namespace Suculentas.Repository
         }
 
         //CATEGORIA
-        public async Task<Categoria> GetAllCategoriaByIdCliente(int Id)
+        public async Task<CategoriaPagination> GetAllCategoriaByCliente(int Id, int pageAtual, string orderBy, string search)
         {
-            IQueryable<Categoria> categorias = _Context.Categorias.Select(c => new Categoria
+            CategoriaPagination categoriaPagination = new CategoriaPagination();
+
+            int paginacao = Int16.Parse(_config.GetSection("AppSettings:PaginacaoProdutos").Value);
+            int skip = pageAtual * paginacao;
+
+            IQueryable<Categoria> queryCategorias = _Context.Categorias.Where(c => c.Id == Id);
+            IQueryable<Produto> queryProdutos = _Context.Produtos
+                .Where(p => p.CategoriaId == Id && p.Ativo == true
+                        && (p.TipoProdutoId == Int16.Parse(_config.GetSection("TipoProduto:Encomenda").Value) ? true : p.Estoque > 0));
+
+            if(search != null && search != "")
             {
-                Id = c.Id,
-                Nome = c.Nome,
-                Descricao = c.Descricao,
-                Ativo = c.Ativo,
-                Produtos = _Context.Produtos.Where(p => p.CategoriaId == c.Id && p.Ativo == true && (p.TipoProdutoId == 1? true : p.Estoque > 0)).OrderByDescending(p => p.Id).ToList()
-            });
+                queryProdutos = queryProdutos.Where(p => p.Nome.ToUpper().Contains(search.ToUpper()));
+            }
 
-            categorias = categorias.Where(c => c.Id == Id);
+            categoriaPagination.UltimaPagina = (skip + paginacao) < queryProdutos.Count() ? false : true;
 
-            return await categorias.FirstOrDefaultAsync();
+            if (orderBy == _config.GetSection("OrderBy:Alfabetica").Value)
+            {
+                queryProdutos = queryProdutos.OrderBy(p => p.Nome);
+            }
+            else if (orderBy == _config.GetSection("OrderBy:PrecoMaior").Value)
+            {
+                queryProdutos = queryProdutos.OrderByDescending(p => p.Preco);
+            }
+            else if (orderBy == _config.GetSection("OrderBy:PrecoMenor").Value)
+            {
+                queryProdutos = queryProdutos.OrderBy(p => p.Preco);
+            }
+            else
+            {
+                queryProdutos = queryProdutos.OrderByDescending(p => p.Id);
+            }
+
+            queryProdutos = queryProdutos
+                .Skip(skip).Take(paginacao);
+
+            categoriaPagination.Categoria = await queryCategorias.FirstOrDefaultAsync();
+            categoriaPagination.Produtos = await queryProdutos.ToArrayAsync(); 
+
+            return categoriaPagination;
         }
 
-        public async Task<Categoria> GetAllCategoriaByIdEmpresa(int Id)
+        public async Task<CategoriaPagination> GetAllCategoriaByEmpresa(int Id, int pageAtual, string orderBy, string search)
         {
-            IQueryable<Categoria> query = _Context.Categorias
-                .Include(c => c.Produtos);
+            CategoriaPagination categoriaPagination = new CategoriaPagination();
 
-            query = query.OrderBy(c => c.Id)
-                .Where(c => c.Id == Id);
+            int paginacao = Int16.Parse(_config.GetSection("AppSettings:PaginacaoProdutos").Value);
+            int skip = pageAtual * paginacao;
 
-            return await query.FirstOrDefaultAsync();
+            IQueryable<Categoria> queryCategorias = _Context.Categorias.Where(c => c.Id == Id);
+            IQueryable<Produto> queryProdutos = _Context.Produtos.Where(p => p.CategoriaId == Id);
+
+            if (search != null && search != "")
+            {
+                queryProdutos = queryProdutos.Where(p => p.Nome.ToUpper().Contains(search.ToUpper()));
+            }
+
+            categoriaPagination.UltimaPagina = (skip + paginacao) < queryProdutos.Count() ? false : true;
+
+            if (orderBy == _config.GetSection("OrderBy:Alfabetica").Value)
+            {
+                queryProdutos = queryProdutos.OrderBy(p => p.Nome);
+            }
+            else if (orderBy == _config.GetSection("OrderBy:PrecoMaior").Value)
+            {
+                queryProdutos = queryProdutos.OrderByDescending(p => p.Preco);
+            }
+            else if (orderBy == _config.GetSection("OrderBy:PrecoMenor").Value)
+            {
+                queryProdutos = queryProdutos.OrderBy(p => p.Preco);
+            }
+            else if (orderBy == _config.GetSection("OrderBy:Estoque").Value)
+            {
+                queryProdutos = queryProdutos.Where(p => p.TipoProdutoId == Int16.Parse(_config.GetSection("TipoProduto:Estoque").Value)).OrderBy(p => p.Estoque);
+            }
+            else
+            {
+                queryProdutos = queryProdutos.OrderByDescending(p => p.Id);
+            }
+
+            queryProdutos = queryProdutos
+                .Skip(skip).Take(paginacao);
+
+            categoriaPagination.Categoria = await queryCategorias.FirstOrDefaultAsync();
+            categoriaPagination.Produtos = await queryProdutos.ToArrayAsync();
+
+            return categoriaPagination;
         }
 
         public async Task<Categoria> GetAllCategoriaById(int Id)
@@ -117,63 +191,13 @@ namespace Suculentas.Repository
                 Nome = c.Nome,
                 Descricao = c.Descricao,
                 Ativo = c.Ativo,
-                Produtos = _Context.Produtos.Where(p => p.CategoriaId == c.Id && p.Ativo == true && (p.TipoProdutoId == 1? true : p.Estoque > 0)).OrderByDescending(p => p.Id).Take(4).ToList()
-            });
+                Produtos = _Context.Produtos.Where(p => p.CategoriaId == c.Id && p.Ativo == true 
+                                                && (p.TipoProdutoId == Int16.Parse(_config.GetSection("TipoProduto:Encomenda").Value) ? true : p.Estoque > 0))
+                .OrderByDescending(p => p.Id).Take(4).ToList()});
 
             categorias = categorias.Where(c => c.Ativo == true).OrderBy(c => c.Nome);
 
             return await categorias.ToArrayAsync();
-        }
-
-        //CIDADE
-        public async Task<Cidade[]> GetAllCidadeByEstadoId(int EstadoId)
-        {
-            IQueryable<Cidade> query = _Context.Cidades;
-
-            query = query.OrderByDescending(c => c.Nome)
-                .Where(c => c.EstadoId == EstadoId);
-
-            return await query.ToArrayAsync();
-        }
-
-        public async Task<Cidade> GetAllCidadeById(int Id)
-        {
-            IQueryable<Cidade> query = _Context.Cidades;
-
-            query = query.OrderByDescending(c => c.Id)
-                .Where(c => c.Id == Id);
-
-            return await query.FirstOrDefaultAsync();
-        }
-
-        public async Task<Cidade> GetAllCidadeByNome(string Nome)
-        {
-            IQueryable<Cidade> query = _Context.Cidades;
-
-            query = query.OrderByDescending(c => c.Id)
-                .Where(c => c.Nome.ToLower() == Nome.ToLower());
-
-            return await query.FirstOrDefaultAsync();
-        }
-
-        //EMPRESA FRETE
-        public async Task<EmpresaFrete> GetAllEmpresaById(int Id)
-        {
-            IQueryable<EmpresaFrete> query = _Context.EmpresaFretes;
-
-            query = query.OrderByDescending(c => c.Id)
-                .Where(c => c.Id == Id);
-
-            return await query.FirstOrDefaultAsync();
-        }
-
-        public async Task<EmpresaFrete[]> GetAllEmpresaFrete()
-        {
-            IQueryable<EmpresaFrete> query = _Context.EmpresaFretes;
-
-            query = query.OrderByDescending(c => c.Nome);
-
-            return await query.ToArrayAsync();
         }
 
         //ENDEREÇO
@@ -196,51 +220,8 @@ namespace Suculentas.Repository
 
             return await query.ToArrayAsync();
         }
-
-        //ESTADO
-        public async Task<Estado[]> GetAllEstado()
-        {
-            IQueryable<Estado> query = _Context.Estados;
-
-            query = query.OrderByDescending(c => c.UF);
-
-            return await query.ToArrayAsync();
-        }
-
-        public async Task<Estado> GetAllEstadoById(int Id)
-        {
-            IQueryable<Estado> query = _Context.Estados
-                .Include(c => c.Cidades);
-
-            query = query.OrderByDescending(c => c.Id)
-                .Where(c => c.Id == Id);
-
-            return await query.FirstOrDefaultAsync();
-        }
-
-        public async Task<Estado> GetAllEstadoByNome(string Nome)
-        {
-            IQueryable<Estado> query = _Context.Estados
-                .Include(c => c.Cidades);
-
-            query = query.OrderByDescending(c => c.Id)
-                .Where(c => c.Nome.ToLower() == Nome.ToLower());
-
-            return await query.FirstOrDefaultAsync();
-        }
-
-        public async Task<Estado> GetAllEstadoByUf(string Uf)
-        {
-            IQueryable<Estado> query = _Context.Estados
-                .Include(c => c.Cidades);
-
-            query = query.OrderByDescending(c => c.Id)
-                .Where(c => c.UF.ToLower() == Uf.ToLower());
-
-            return await query.FirstOrDefaultAsync();
-        }
         
-
+        // GASTOS 
         public async Task<Gastos[]> GetAllGastos()
         {
             IQueryable<Gastos> query = _Context.Gastos;
@@ -335,7 +316,7 @@ namespace Suculentas.Repository
         //TIPO PRODUTO
         public async Task<TipoProduto[]> GetAllTipoProduto()
         {
-            IQueryable<TipoProduto> query = _Context.TipoProduto
+            IQueryable<TipoProduto> query = _Context.TipoProdutos
                 .Include(c => c.Produtos);
 
             query = query.OrderBy(c => c.Nome);
@@ -345,7 +326,7 @@ namespace Suculentas.Repository
 
         public async Task<TipoProduto[]> GetAllTipoProdutoSemProduto()
         {
-            IQueryable<TipoProduto> query = _Context.TipoProduto;
+            IQueryable<TipoProduto> query = _Context.TipoProdutos;
 
             query = query.OrderBy(c => c.Nome);
 
@@ -354,7 +335,7 @@ namespace Suculentas.Repository
 
         public async Task<TipoProduto> GetAllTipoProdutoById(int Id)
         {
-            IQueryable<TipoProduto> query = _Context.TipoProduto
+            IQueryable<TipoProduto> query = _Context.TipoProdutos
                 .Include(c => c.Produtos);
 
             query = query.OrderBy(c => c.Nome)
@@ -376,32 +357,89 @@ namespace Suculentas.Repository
         public async Task<Venda> GetAllVendaById(int Id)
         {
             IQueryable<Venda> query = _Context.Vendas
-                .Include(c => c.Pedidos);
+                .Include(c => c.Pedidos)
+                .ThenInclude(c => c.Produto);
 
-            query = query.OrderByDescending(c => c.DataVenda)
-                .Where(c => c.Id == Id);
-
-            return await query.FirstOrDefaultAsync();
-        }
-
-        public async Task<Venda> GetAllVendaByStatusId(int StatusId)
-        {
-            IQueryable<Venda> query = _Context.Vendas;
-
-            query = query.OrderByDescending(c => c.DataVenda)
-                .Where(c => c.StatusId == StatusId);
+            query = query.Where(c => c.Id == Id);
 
             return await query.FirstOrDefaultAsync();
         }
 
-        public async Task<Venda> GetAllVendaByUserId(int UserId)
+        public async Task<Venda> GetAllVendaByIdSemInclude(int Id)
         {
             IQueryable<Venda> query = _Context.Vendas;
 
-            query = query.OrderByDescending(c => c.DataVenda)
-                .Where(c => c.UserId == UserId);
+            query = query.Where(c => c.Id == Id);
 
             return await query.FirstOrDefaultAsync();
+        }
+
+        public async Task<Venda> GetAllVendaByIdEmpresa(int Id)
+        {
+            IQueryable<Venda> query = _Context.Vendas
+                .Include(c => c.User)
+                .Include(c => c.Pedidos)
+                    .ThenInclude(c => c.Produto);
+
+            query = query.Where(c => c.Id == Id);
+
+            return await query.FirstOrDefaultAsync();
+        }
+
+        public async Task<VendaPagination> GetAllVendaByStatusId(int StatusId, int pageAtual)
+        {
+            IQueryable<Venda> queryVendas = _Context.Vendas.Where(c => c.StatusId == StatusId).OrderBy(c => c.DataVenda);
+            VendaPagination vendasPagination = new VendaPagination();
+
+            int paginacao = Int16.Parse(_config.GetSection("AppSettings:PaginacaoVendas").Value);
+            int skip = pageAtual * paginacao;
+
+            vendasPagination.UltimaPagina = (skip + paginacao) < queryVendas.Count()? false : true;
+
+            queryVendas = queryVendas.Include(c => c.Pedidos).ThenInclude(c => c.Produto).Skip(skip).Take(paginacao);
+            vendasPagination.Vendas = await queryVendas.ToArrayAsync();
+
+            return vendasPagination;
+        }
+
+        public async Task<VendaPagination> GetAllVendaByUserId(int UserId, int StatusId, int pageAtual)
+        {
+            IQueryable<Venda> queryVendas = _Context.Vendas.Where(c => c.UserId == UserId && c.StatusId == StatusId).OrderBy(c => c.DataVenda);
+            VendaPagination vendasPagination = new VendaPagination();
+
+            int paginacao = Int16.Parse(_config.GetSection("AppSettings:PaginacaoVendas").Value);
+            int skip = pageAtual * paginacao;
+
+            vendasPagination.UltimaPagina = (skip + paginacao) < queryVendas.Count() ? false : true;
+
+            queryVendas = queryVendas.Include(c => c.Pedidos).ThenInclude(c => c.Produto).Skip(skip).Take(paginacao);
+            vendasPagination.Vendas = await queryVendas.ToArrayAsync();
+
+            return vendasPagination;
+        }
+
+        public async Task<VendaStatusCount[]> GetAllVendaCountStatusEmpresa()
+        {
+            IQueryable<Venda> queryVendas = _Context.Vendas;
+
+            IQueryable<VendaStatusCount> query = queryVendas.GroupBy(x => x.StatusId)
+                .Select(x => new VendaStatusCount { StatusId = x.Key, CountVenda = x.Count() });
+
+            query = query.OrderByDescending(c => c.StatusId);
+
+            return await query.ToArrayAsync();
+        }
+
+        public async Task<VendaStatusCount[]> GetAllVendaCountStatusUser(int UserId)
+        {
+            IQueryable<Venda> queryVendas = _Context.Vendas.Where(v => v.UserId == UserId);
+
+            IQueryable<VendaStatusCount> query = queryVendas.GroupBy(x => x.StatusId)
+                .Select(x => new VendaStatusCount { StatusId = x.Key, CountVenda = x.Count() });
+
+            query = query.OrderByDescending(c => c.StatusId);
+
+            return await query.ToArrayAsync();
         }
     }
 }

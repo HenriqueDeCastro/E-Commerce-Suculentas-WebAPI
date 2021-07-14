@@ -4,8 +4,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <_PublishTargetUrl>C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Publicação</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Publish</_PublishTargetUrl>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <History>True|2021-06-10T11:50:22.3249804Z;True|2021-06-10T08:48:28.5110431-03:00;True|2021-06-10T00:06:19.5373307-03:00;True|2021-06-10T00:04:44.0256301-03:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <DestinationConnectionStrings Include="DefaultConnection">

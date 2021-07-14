@@ -8,7 +8,14 @@
       "TRACE",
       "RELEASE",
       "NETCOREAPP",
-      "NETCOREAPP3_1"
+      "NETCOREAPP3_1",
+      "NETCOREAPP1_0_OR_GREATER",
+      "NETCOREAPP1_1_OR_GREATER",
+      "NETCOREAPP2_0_OR_GREATER",
+      "NETCOREAPP2_1_OR_GREATER",
+      "NETCOREAPP2_2_OR_GREATER",
+      "NETCOREAPP3_0_OR_GREATER",
+      "NETCOREAPP3_1_OR_GREATER"
     ],
     "languageVersion": "8.0",
     "platform": "",
@@ -30,7 +37,10 @@
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "3.1.7",
           "Microsoft.EntityFrameworkCore.Design": "3.1.7",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.1.7",
+          "Suculentas.Business": "1.0.0",
           "Suculentas.Domain": "1.0.0",
+          "Suculentas.Email": "1.0.0",
+          "Suculentas.PagSeguro": "1.0.0",
           "Suculentas.Repository": "1.0.0",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "3.1.0.0",
@@ -1469,6 +1479,17 @@
           "System.Xml.XmlDocument": "4.3.0"
         }
       },
+      "Suculentas.Business/1.0.0": {
+        "dependencies": {
+          "Suculentas.Domain": "1.0.0"
+        },
+        "runtime": {
+          "Suculentas.Business.dll": {}
+        },
+        "compile": {
+          "Suculentas.Business.dll": {}
+        }
+      },
       "Suculentas.Domain/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "3.1.7"
@@ -1478,6 +1499,22 @@
         },
         "compile": {
           "Suculentas.Domain.dll": {}
+        }
+      },
+      "Suculentas.Email/1.0.0": {
+        "runtime": {
+          "Suculentas.Email.dll": {}
+        },
+        "compile": {
+          "Suculentas.Email.dll": {}
+        }
+      },
+      "Suculentas.PagSeguro/1.0.0": {
+        "runtime": {
+          "Suculentas.PagSeguro.dll": {}
+        },
+        "compile": {
+          "Suculentas.PagSeguro.dll": {}
         }
       },
       "Suculentas.Repository/1.0.0": {
@@ -3834,7 +3871,22 @@
       "path": "system.xml.xmlserializer/4.3.0",
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
     },
+    "Suculentas.Business/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Suculentas.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Suculentas.Email/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Suculentas.PagSeguro/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -50,7 +50,7 @@ namespace Suculentas.WebApi.Controllers
 
                 return Ok(results);
             }
-            catch (System.Exception) 
+            catch (System.Exception e) 
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
             }
@@ -125,7 +125,7 @@ namespace Suculentas.WebApi.Controllers
                     return Ok();
                 }
             }
-            catch (System.Exception) 
+            catch (System.Exception ex) 
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
             }

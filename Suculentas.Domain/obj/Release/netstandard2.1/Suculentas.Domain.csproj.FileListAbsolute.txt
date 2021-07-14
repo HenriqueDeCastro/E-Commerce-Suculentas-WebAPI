@@ -1,9 +1,9 @@
 C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Domain\bin\Release\netstandard2.1\Suculentas.Domain.deps.json
 C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Domain\bin\Release\netstandard2.1\Suculentas.Domain.dll
 C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Domain\bin\Release\netstandard2.1\Suculentas.Domain.pdb
-C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Domain\obj\Release\netstandard2.1\Suculentas.Domain.csprojAssemblyReference.cache
 C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Domain\obj\Release\netstandard2.1\Suculentas.Domain.AssemblyInfoInputs.cache
 C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Domain\obj\Release\netstandard2.1\Suculentas.Domain.AssemblyInfo.cs
 C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Domain\obj\Release\netstandard2.1\Suculentas.Domain.dll
 C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Domain\obj\Release\netstandard2.1\Suculentas.Domain.pdb
 C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Domain\obj\Release\netstandard2.1\Suculentas.Domain.csproj.CoreCompileInputs.cache
+C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Domain\obj\Release\netstandard2.1\Suculentas.Domain.csproj.AssemblyReference.cache

@@ -1,0 +1,9 @@
+C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.PagSeguro\bin\Debug\netstandard2.1\Suculentas.PagSeguro.deps.json
+C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.PagSeguro\bin\Debug\netstandard2.1\Suculentas.PagSeguro.dll
+C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.PagSeguro\bin\Debug\netstandard2.1\Suculentas.PagSeguro.pdb
+C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.PagSeguro\obj\Debug\netstandard2.1\Suculentas.PagSeguro.AssemblyInfoInputs.cache
+C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.PagSeguro\obj\Debug\netstandard2.1\Suculentas.PagSeguro.AssemblyInfo.cs
+C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.PagSeguro\obj\Debug\netstandard2.1\Suculentas.PagSeguro.dll
+C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.PagSeguro\obj\Debug\netstandard2.1\Suculentas.PagSeguro.pdb
+C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.PagSeguro\obj\Debug\netstandard2.1\Suculentas.PagSeguro.csproj.AssemblyReference.cache
+C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.PagSeguro\obj\Debug\netstandard2.1\Suculentas.PagSeguro.csproj.CoreCompileInputs.cache

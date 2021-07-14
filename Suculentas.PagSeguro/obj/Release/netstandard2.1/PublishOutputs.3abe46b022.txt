@@ -1,0 +1,3 @@
+C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Publish\Suculentas.PagSeguro.dll
+C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Publish\Suculentas.PagSeguro.deps.json
+C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Publish\Suculentas.PagSeguro.pdb

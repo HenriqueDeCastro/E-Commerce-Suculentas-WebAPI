@@ -3,10 +3,10 @@ C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Repos
 C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Repository\bin\Debug\netstandard2.1\Suculentas.Repository.pdb
 C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Repository\bin\Debug\netstandard2.1\Suculentas.Domain.dll
 C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Repository\bin\Debug\netstandard2.1\Suculentas.Domain.pdb
-C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Repository\obj\Debug\netstandard2.1\Suculentas.Repository.csprojAssemblyReference.cache
 C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Repository\obj\Debug\netstandard2.1\Suculentas.Repository.AssemblyInfoInputs.cache
 C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Repository\obj\Debug\netstandard2.1\Suculentas.Repository.AssemblyInfo.cs
-C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Repository\obj\Debug\netstandard2.1\Suculentas.Repository.csproj.CoreCompileInputs.cache
 C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Repository\obj\Debug\netstandard2.1\Suculentas.Repository.csproj.CopyComplete
 C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Repository\obj\Debug\netstandard2.1\Suculentas.Repository.dll
 C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Repository\obj\Debug\netstandard2.1\Suculentas.Repository.pdb
+C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Repository\obj\Debug\netstandard2.1\Suculentas.Repository.csproj.AssemblyReference.cache
+C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Repository\obj\Debug\netstandard2.1\Suculentas.Repository.csproj.CoreCompileInputs.cache

@@ -1,0 +1,9 @@
+C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Email\bin\Release\netstandard2.1\Suculentas.Email.deps.json
+C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Email\bin\Release\netstandard2.1\Suculentas.Email.dll
+C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Email\bin\Release\netstandard2.1\Suculentas.Email.pdb
+C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Email\obj\Release\netstandard2.1\Suculentas.Email.AssemblyInfoInputs.cache
+C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Email\obj\Release\netstandard2.1\Suculentas.Email.AssemblyInfo.cs
+C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Email\obj\Release\netstandard2.1\Suculentas.Email.dll
+C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Email\obj\Release\netstandard2.1\Suculentas.Email.pdb
+C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Email\obj\Release\netstandard2.1\Suculentas.Email.csproj.CoreCompileInputs.cache
+C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Email\obj\Release\netstandard2.1\Suculentas.Email.csproj.AssemblyReference.cache

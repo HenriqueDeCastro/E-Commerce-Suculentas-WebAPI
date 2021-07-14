@@ -21,7 +21,10 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Suculentas.Business;
 using Suculentas.Domain.Identity;
+using Suculentas.Email;
+using Suculentas.PagSeguro;
 using Suculentas.Repository;
 using Suculentas.WebApi.Helpers;
 
@@ -36,10 +39,11 @@ namespace Suculentas.WebApi
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<SuculentasContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            var serverVersion = new MySqlServerVersion(new Version(8, 0, 25));
+            var connectionString = Configuration.GetConnectionString("MySqlConnectionString");
+            services.AddDbContext<SuculentasContext>(x => x.UseMySql(connectionString, serverVersion));
 
             // services.AddResponseCaching();
             services.AddControllers();
@@ -97,13 +101,16 @@ namespace Suculentas.WebApi
             services.AddControllers().AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = 
                 Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
+            services.AddScoped<ISuculentasBusiness, SuculentasBusiness>();
+            services.AddScoped<ISuculentasEmail, SuculentasEmail>();
+            services.AddScoped<ISuculentasPagSeguro, SuculentasPagSeguro>();
             services.AddScoped<ISuculentasRepository, SuculentasRepository>();
+            
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddCors();        
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

@@ -7,6 +7,7 @@ ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.mi
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <_PublishTargetUrl>C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Homologação</_PublishTargetUrl>
+    <History>True|2021-06-10T11:58:44.0098943Z;</History>
   </PropertyGroup>
   <ItemGroup>
     <DestinationConnectionStrings Include="DefaultConnection">

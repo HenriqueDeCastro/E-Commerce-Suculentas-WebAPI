@@ -8,16 +8,17 @@ namespace Suculentas.Domain
     {
         public int Id { get; set; }
         public DateTime DataVenda { get; set; }
+        public string CodigoTransacao { get; set; }
+        public string StatusPagSeguro { get; set; }
         public double Valor { get; set; }
-        public double Frete { get; set; }
+        public bool Frete { get; set; }
+        public double? ValorFrete { get; set; }
+        public string CodigoRastreio { get; set; }
         public int StatusId { get; set; }
         public int UserId { get; set; }
-        public int EmpresaFreteId { get; set; }
-        public int EnderecoId { get; set; }
+        public string Endereco { get; set; }
         public Status Status { get; set; }
         public User User { get; set; }
-        public EmpresaFrete EmpresaFrete { get; set; }
-        public Endereco Endereco { get; set; }
         public List<Pedido> Pedidos { get; set; }
 
     }

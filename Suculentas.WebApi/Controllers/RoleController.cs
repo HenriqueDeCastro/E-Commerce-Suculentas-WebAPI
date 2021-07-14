@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Suculentas.Domain.Identity;
+using Suculentas.Repository;
 using Suculentas.WebApi.Dtos;
 
 namespace Suculentas.WebApi.Controllers
@@ -20,14 +21,31 @@ namespace Suculentas.WebApi.Controllers
     [Route("[controller]")]
     [ApiController]
     public class RoleController : ControllerBase
-    {
+    {        
+        private readonly IMapper _mapper;
         private readonly RoleManager<Role> _roleManager;
         private readonly UserManager<User> _userManager;
 
-        public RoleController(RoleManager<Role> roleManager, UserManager<User> userManager)
+        public RoleController(IMapper mapper, RoleManager<Role> roleManager, UserManager<User> userManager)
         {
+            _mapper = mapper;
             _roleManager = roleManager;
             _userManager = userManager;
+        }
+
+        [HttpGet("GetRole")]
+        public async Task<IActionResult> GetRoles() 
+        {
+            try
+            {                
+                var roles = await _roleManager.Roles.ToListAsync();
+
+                return Ok(roles);
+            }
+            catch (System.Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou: " + ex.Message);
+            }
         }
 
         [HttpPost("CreateRole")]
@@ -51,22 +69,23 @@ namespace Suculentas.WebApi.Controllers
             try
             {
                 var user = await _userManager.FindByEmailAsync(model.Email);
+                var resultado = new IdentityResult();
 
                 if(user != null) 
                 {
 
                     if(model.Delete)
-                        await _userManager.RemoveFromRoleAsync(user, model.Role);
+                        resultado = await _userManager.RemoveFromRoleAsync(user, model.Role);
 
                     else
-                        await _userManager.AddToRoleAsync(user, model.Role);
+                        resultado = await _userManager.AddToRoleAsync(user, model.Role);
                 }
                 else 
                 {
                     return this.StatusCode(StatusCodes.Status404NotFound, "Usuario não encontrado!");
                 }
 
-                return Ok("Sucesso");
+                return Ok(resultado);
             }
             catch (System.Exception ex)
             {

@@ -14,15 +14,14 @@ namespace Suculentas.Repository
         public SuculentasContext(DbContextOptions<SuculentasContext> options): base(options){}
 
         public DbSet<Categoria> Categorias { get; set; }
-        public DbSet<Cidade> Cidades { get; set; }
-        public DbSet<EmpresaFrete> EmpresaFretes { get; set; }
         public DbSet<Endereco> Enderecos { get; set; }
-        public DbSet<Estado> Estados { get; set; }
         public DbSet<Gastos> Gastos { get; set; }
+        public DbSet<LogEmail> LogEmails { get; set; }
+        public DbSet<LogExcecao> LogExcecoes { get; set; }
         public DbSet<Pedido> Pedidos { get; set; }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Status> Status { get; set; }
-        public DbSet<TipoProduto> TipoProduto { get; set; }
+        public DbSet<TipoProduto> TipoProdutos { get; set; }
         public DbSet<Venda> Vendas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

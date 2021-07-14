@@ -13,9 +13,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using Suculentas.Domain;
 using Suculentas.Domain.Identity;
+using Suculentas.Email;
+using Suculentas.Repository;
 using Suculentas.WebApi.Dtos;
-using Suculentas.WebApi.Utils;
 
 namespace Suculentas.WebApi.Controllers
 {
@@ -27,42 +29,61 @@ namespace Suculentas.WebApi.Controllers
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly IMapper _mapper;
-        private readonly EnvioEmail _envio = new EnvioEmail();
-        private readonly CorpoEmail _bodyEmail = new CorpoEmail();
+        private readonly ISuculentasEmail _email;
+        private readonly ISuculentasRepository _repo;
 
         public UserController(IConfiguration config,
                               UserManager<User> userManager,
                               SignInManager<User> signInManager,
-                              IMapper mapper)
+                              IMapper mapper,
+                              ISuculentasEmail email,
+                              ISuculentasRepository repo)
         {
-           this. _config = config;
+           this._config = config;
            this._userManager = userManager;
            this._signInManager = signInManager;
            this._mapper = mapper;
+           this._email = email;
+           this._repo = repo;
         }
 
-        [HttpGet("GetUser")]
-        [AllowAnonymous]
-        public async Task<IActionResult> GetUser()
-        {
-            return Ok(new UserDto());
-        }
-
-        [HttpGet("GetUserBD")]
-        [AllowAnonymous]
-        public async Task<IActionResult> GetUserBD()
+        [HttpGet("GetByEmail/{Email}")]
+        public async Task<IActionResult> GetUser(string email) 
         {
             try
-            {
-                User user = await _userManager.FindByEmailAsync("1234@1234");
+            {                
+                var user = await _userManager.FindByEmailAsync(email);
 
-                var results = _mapper.Map<UserDto>(user);
+                if(user == null) {
+                    return NotFound();
+                }
 
-                return Ok(results);
+                var userToReturn = _mapper.Map<UserDto>(user);
+
+                return Ok(userToReturn);
             }
-            catch (System.Exception e)
+            catch (System.Exception ex)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, e);
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou: " + ex.Message);
+            }
+        }
+
+        [HttpGet("GetByRole/{RoleName}")]
+        public async Task<IActionResult> GetByRole(string RoleName) 
+        {
+            try
+            {                
+                var user = await _userManager.GetUsersInRoleAsync(RoleName);
+
+                if(user == null) {
+                    return NotFound();
+                }
+
+                return Ok(user);
+            }
+            catch (System.Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou: " + ex.Message);
             }
         }
 
@@ -73,15 +94,20 @@ namespace Suculentas.WebApi.Controllers
             try
             {
                 var user = await _userManager.FindByEmailAsync(userDto.Email);
+                string data = null;
 
-                if(user == null) 
+                if (user == null) 
                 {
+                    if(!string.IsNullOrEmpty(userDto.DataNascimento))
+                    {
+                        data = userDto.DataNascimento;
+                    }
                     user = new User 
                     {
                         UserName = userDto.Email,
                         FullName = userDto.FullName,
                         CPF = userDto.CPF,
-                        DataNascimento = Convert.ToDateTime(userDto.DataNascimento),
+                        DataNascimento = Convert.ToDateTime(data),
                         PhoneNumber = userDto.PhoneNumber,
                         Email = userDto.Email
                     };
@@ -94,6 +120,7 @@ namespace Suculentas.WebApi.Controllers
                         var token = GenerateJwToken(appUser).Result;
 
                         var userToReturn = _mapper.Map<UserDto>(appUser);
+
                         //var confirmationEmail = Url.Action("ConfirmEmailAddress", "Home", 
                         //    new { token = token, email = user.Email }, Request.Scheme);
 
@@ -124,26 +151,47 @@ namespace Suculentas.WebApi.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> EsqueciSenha(EsqueciSenhaDto EsqueciSenhaDto) 
         {
-            var user = await _userManager.FindByEmailAsync(EsqueciSenhaDto.Email);
-
-            if(user != null) 
+            try
             {
-                string token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var user = await _userManager.FindByEmailAsync(EsqueciSenhaDto.Email);
 
-                string tokenWeb = HttpUtility.UrlEncode(token);
+                if (user != null)
+                {
+                    string token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                    string tokenWeb = HttpUtility.UrlEncode(token);
 
-                var resetURL = "https://suculentasdaro.com.br/user/reset/" + user.Email + "/" + tokenWeb;
+                    string resetURL = "https://suculentasdaro.com.br/user/reset/" + user.Email + "/" + tokenWeb;
+                    string corpo = _email.BodyEsqueciSenha(resetURL, user.FullName);
+                    string Assunto = "Solicitação para redefinir sua senha";
 
-                string corpoEmail = _bodyEmail.BodyEsqueciSenha(resetURL, user.FullName);
+                    try
+                    {
+                        _email.EnviarEmailSuculentas(user.Email, Assunto, corpo);
+                    }
+                    catch (Exception ex)
+                    {
 
-                _envio.EnviarEmail(user.Email, "[Suculentas da Rô] Solicitação para redefinir sua senha" , corpoEmail);
+                        LogEmail log = new LogEmail();
+                        log.Para = user.Email;
+                        log.Assunto = Assunto;
+                        log.Corpo = corpo;
+                        log.ExceptionMensagem = ex.Message;
 
-                return Ok(new ResetarSenhaDto { Token = token, Email = EsqueciSenhaDto.Email});
+                        _repo.Add(log);
+                        return this.StatusCode(StatusCodes.Status500InternalServerError, "Erro ao enviar e-mail");
+                    }
 
+                    return Ok(new ResetarSenhaDto { Token = token, Email = EsqueciSenhaDto.Email });
+
+                }
+                else
+                {
+                    return this.StatusCode(StatusCodes.Status404NotFound, "Usuario não encontrado!");
+                }
             }
-            else 
+            catch (System.Exception ex)
             {
-                return this.StatusCode(StatusCodes.Status404NotFound, "Usuario não encontrado!");
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou: " + ex.Message);
             }
         }
 
@@ -177,6 +225,43 @@ namespace Suculentas.WebApi.Controllers
             }
         }
 
+        [HttpPut("AtualizarUsuario")]
+        public async Task<IActionResult> Atualizar(UserDto user)
+        {
+            try
+            {
+                var usuario = await _userManager.FindByEmailAsync(user.Email);
+
+                if(usuario == null) 
+                {
+                    return this.StatusCode(StatusCodes.Status404NotFound, "Usuario não encontrado!");
+                }
+
+                User usuarioAtt = _mapper.Map(user, usuario);
+                var result = await _userManager.UpdateAsync(usuarioAtt);
+
+                if (result.Succeeded) 
+                {
+                    var appUser = await _userManager.Users.FirstOrDefaultAsync(u => u.NormalizedEmail == user.Email.ToUpper());
+                    var token = GenerateJwToken(appUser).Result;
+
+                    var userToReturn = _mapper.Map<UserDto>(appUser);
+
+                    return Ok(new {
+                        token = GenerateJwToken(appUser).Result,
+                        user = userToReturn
+                    });
+                }
+
+                return this.StatusCode(StatusCodes.Status401Unauthorized, result); 
+            }
+            catch (System.Exception) 
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
+            }
+        }
+
+
         [HttpPost("Login")]
         [AllowAnonymous]
         public async Task<IActionResult> Login(UserLoginDto userLogin)
@@ -191,9 +276,7 @@ namespace Suculentas.WebApi.Controllers
 
                     if (result.Succeeded)
                     {
-                        var appUser = await _userManager.Users
-                            .FirstOrDefaultAsync(u => u.NormalizedEmail == userLogin.Email.ToUpper());
-
+                        var appUser = await _userManager.Users.FirstOrDefaultAsync(u => u.NormalizedEmail == userLogin.Email.ToUpper());
                         var userToReturn = _mapper.Map<UserDto>(appUser);
 
                         return Ok(new {
@@ -215,12 +298,12 @@ namespace Suculentas.WebApi.Controllers
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Name, user.FullName),
-                new Claim(ClaimTypes.SerialNumber, user.CPF),
-                new Claim(ClaimTypes.DateOfBirth, user.DataNascimento.ToString()),
-                new Claim(ClaimTypes.MobilePhone, user.Id.ToString()),
-                new Claim(ClaimTypes.Email, user.Email)
+                new Claim(type: "id", user.Id.ToString()),
+                new Claim(type: "fullName", user.FullName),
+                new Claim(type: "cpf", user.CPF),
+                new Claim(type: "dataNascimento", user.DataNascimento.ToString()),
+                new Claim(type: "phoneNumber", user.PhoneNumber),
+                new Claim(type: "email", user.Email)
             };
 
             var roles = await _userManager.GetRolesAsync(user);

@@ -1,0 +1,3 @@
+C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Publish\Suculentas.Email.dll
+C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Publish\Suculentas.Email.deps.json
+C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Publish\Suculentas.Email.pdb

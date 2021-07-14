@@ -58,17 +58,15 @@ namespace Suculentas.WebApi.Controllers
             }
         }
 
-        [HttpGet("getCliente/{Id}")]
+        [HttpGet("getCliente")]
         [AllowAnonymous]
-        public async Task<IActionResult> GetByIdCliente(int Id)
+        public async Task<IActionResult> GetByCliente(int id, int pageAtual, string orderBy, string search)
         {
             try
             {
-                var categorias = await _repo.GetAllCategoriaByIdCliente(Id);
+                var categoria = await _repo.GetAllCategoriaByCliente(id, pageAtual, orderBy, search);
 
-                var results = _mapper.Map<CategoriaDto>(categorias);
-
-                return Ok(results);
+                return Ok(categoria);
             }
             catch (System.Exception e)
             {
@@ -76,16 +74,14 @@ namespace Suculentas.WebApi.Controllers
             }
         }
 
-        [HttpGet("getEmpresa/{Id}")]
-        public async Task<IActionResult> GetByIdEmpresa(int Id)
+        [HttpGet("getEmpresa")]
+        public async Task<IActionResult> GetByIdEmpresa(int id, int pageAtual, string orderBy, string search)
         {
             try
             {
-                var categorias = await _repo.GetAllCategoriaByIdEmpresa(Id);
+                var categorias = await _repo.GetAllCategoriaByEmpresa(id, pageAtual, orderBy, search);
 
-                var results = _mapper.Map<CategoriaDto>(categorias);
-
-                return Ok(results);
+                return Ok(categorias);
             }
             catch (System.Exception e) 
             {
@@ -174,6 +170,16 @@ namespace Suculentas.WebApi.Controllers
             try
             {
                 var categoria = await _repo.GetAllCategoriaById(Id);
+                var produtos = await _repo.GetAllProdutoByCategoriaId(categoria.Id);
+
+                if(categoria.Ativo != model.Ativo) 
+                {
+                    foreach (var produto in produtos)
+                    {
+                        produto.Ativo = model.Ativo;
+                        _repo.Update(produto);
+                    }
+                }
 
                 if(categoria == null) 
                 {
@@ -189,7 +195,7 @@ namespace Suculentas.WebApi.Controllers
                     return Created($"/categoria/{model.Id}",  _mapper.Map<CategoriaDto>(categoria));
                 }
             }
-            catch (System.Exception) 
+            catch (System.Exception e) 
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
             }

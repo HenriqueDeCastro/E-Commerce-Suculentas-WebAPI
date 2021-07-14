@@ -1,0 +1,2 @@
+C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Business\obj\Debug\netstandard2.0\Suculentas.Business.AssemblyInfoInputs.cache
+C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Business\obj\Debug\netstandard2.0\Suculentas.Business.AssemblyInfo.cs
