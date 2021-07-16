@@ -47,6 +47,19 @@ namespace Suculentas.WebApi.Controllers
            this._repo = repo;
         }
 
+        [HttpGet("GetTesteServer")]
+        public async Task<IActionResult> GetTesteServer()
+        {
+            try
+            {
+                return Ok("Ok");
+            }
+            catch (System.Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou: " + ex.Message);
+            }
+        }
+
         [HttpGet("GetByEmail/{Email}")]
         public async Task<IActionResult> GetUser(string email) 
         {

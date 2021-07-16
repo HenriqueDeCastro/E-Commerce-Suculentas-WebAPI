@@ -88,7 +88,16 @@ namespace Suculentas.WebApi.Controllers
             try
             {
                 var file = Request.Form.Files[0];
-                var folderName = Path.Combine("Resources");
+                var mini = bool.Parse(Request.Form["mini"].ToString());
+                string folderName = null;
+
+                if (mini)
+                {
+                    folderName = Path.Combine(@"Resources\Mini");
+                } else
+                {
+                    folderName = Path.Combine(@"Resources\Normal");
+                }
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
 
                 if(file.Length > 0)
