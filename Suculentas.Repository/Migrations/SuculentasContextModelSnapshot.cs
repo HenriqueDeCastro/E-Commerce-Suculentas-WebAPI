@@ -14,8 +14,8 @@ namespace Suculentas.Repository.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.7")
-                .HasAnnotation("Relational:MaxIdentifierLength", 64);
+                .HasAnnotation("Relational:MaxIdentifierLength", 64)
+                .HasAnnotation("ProductVersion", "5.0.7");
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
@@ -24,10 +24,10 @@ namespace Suculentas.Repository.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ClaimType")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("ClaimValue")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
@@ -46,10 +46,10 @@ namespace Suculentas.Repository.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ClaimType")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("ClaimValue")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -64,13 +64,13 @@ namespace Suculentas.Repository.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("ProviderDisplayName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -88,68 +88,48 @@ namespace Suculentas.Repository.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Value")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("longtext");
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Suculentas.Domain.Categoria", b =>
+            modelBuilder.Entity("Suculentas.Domain.Address", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    b.Property<bool>("Ativo")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("Descricao")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("Nome")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Categorias");
-                });
-
-            modelBuilder.Entity("Suculentas.Domain.Endereco", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Bairro")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("CEP")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("longtext");
 
-                    b.Property<string>("Cidade")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<string>("City")
+                        .HasColumnType("longtext");
 
-                    b.Property<string>("Complemento")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<string>("Complement")
+                        .HasColumnType("longtext");
 
-                    b.Property<string>("Descricao")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext");
 
-                    b.Property<string>("Estado")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<string>("District")
+                        .HasColumnType("longtext");
 
-                    b.Property<int>("Numero")
+                    b.Property<int>("Number")
                         .HasColumnType("int");
 
-                    b.Property<string>("Rua")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<string>("Road")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("State")
+                        .HasColumnType("longtext");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -158,27 +138,27 @@ namespace Suculentas.Repository.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Enderecos");
+                    b.ToTable("Adresses");
                 });
 
-            modelBuilder.Entity("Suculentas.Domain.Gastos", b =>
+            modelBuilder.Entity("Suculentas.Domain.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Data")
-                        .HasColumnType("datetime(6)");
+                    b.Property<bool>("Active")
+                        .HasColumnType("tinyint(1)");
 
-                    b.Property<int>("Descricao")
-                        .HasColumnType("int");
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext");
 
-                    b.Property<int>("Valor")
-                        .HasColumnType("int");
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Gastos");
+                    b.ToTable("Categorys");
                 });
 
             modelBuilder.Entity("Suculentas.Domain.Identity.Role", b =>
@@ -189,21 +169,21 @@ namespace Suculentas.Repository.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Name")
-                        .HasColumnType("varchar(256) CHARACTER SET utf8mb4")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
 
                     b.Property<string>("NormalizedName")
-                        .HasColumnType("varchar(256) CHARACTER SET utf8mb4")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
-                        .HasName("RoleNameIndex");
+                        .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles");
                 });
@@ -214,22 +194,25 @@ namespace Suculentas.Repository.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<ulong>("AcceptTerms")
+                        .HasColumnType("bit");
+
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("BirthDate")
+                        .HasColumnType("date");
 
                     b.Property<string>("CPF")
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<DateTime?>("DataNascimento")
-                        .HasColumnType("date");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Email")
-                        .HasColumnType("varchar(256) CHARACTER SET utf8mb4")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("tinyint(1)");
@@ -244,40 +227,40 @@ namespace Suculentas.Repository.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("NormalizedEmail")
-                        .HasColumnType("varchar(256) CHARACTER SET utf8mb4")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
 
                     b.Property<string>("NormalizedUserName")
-                        .HasColumnType("varchar(256) CHARACTER SET utf8mb4")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
 
                     b.Property<string>("PasswordHash")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("longtext");
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("SecurityStamp")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("longtext");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("varchar(256) CHARACTER SET utf8mb4")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
-                        .HasName("EmailIndex");
+                        .HasDatabaseName("EmailIndex");
 
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
-                        .HasName("UserNameIndex");
+                        .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -290,6 +273,9 @@ namespace Suculentas.Repository.Migrations
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("RoleId1")
+                        .HasColumnType("int");
+
                     b.Property<int?>("UserId1")
                         .HasColumnType("int");
 
@@ -297,75 +283,182 @@ namespace Suculentas.Repository.Migrations
 
                     b.HasIndex("RoleId");
 
+                    b.HasIndex("RoleId1");
+
                     b.HasIndex("UserId1");
 
                     b.ToTable("AspNetUserRoles");
                 });
 
-            modelBuilder.Entity("Suculentas.Domain.Pedido", b =>
-                {
-                    b.Property<int>("VendaId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProdutoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Preco")
-                        .HasColumnType("double");
-
-                    b.Property<int>("Quantidade")
-                        .HasColumnType("int");
-
-                    b.HasKey("VendaId", "ProdutoId");
-
-                    b.HasIndex("ProdutoId");
-
-                    b.ToTable("Pedidos");
-                });
-
-            modelBuilder.Entity("Suculentas.Domain.Produto", b =>
+            modelBuilder.Entity("Suculentas.Domain.LogEmail", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<bool>("Ativo")
-                        .HasColumnType("tinyint(1)");
+                    b.Property<string>("Body")
+                        .HasColumnType("longtext");
 
-                    b.Property<int>("CategoriaId")
+                    b.Property<string>("ExceptionMessage")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("To")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Topic")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LogEmails");
+                });
+
+            modelBuilder.Entity("Suculentas.Domain.LogException", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Descricao")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<string>("InnerException")
+                        .HasColumnType("longtext");
 
-                    b.Property<int?>("Estoque")
+                    b.Property<string>("InnerExceptionMessage")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("StackTrace")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LogExceptions");
+                });
+
+            modelBuilder.Entity("Suculentas.Domain.Order", b =>
+                {
+                    b.Property<int>("SaleId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Imagem")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Nome")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
 
-                    b.Property<double>("Preco")
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Price")
                         .HasColumnType("double");
 
-                    b.Property<int?>("QuantidadeMaxima")
+                    b.HasKey("SaleId", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("Suculentas.Domain.Product", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("TipoProdutoId")
+                    b.Property<bool>("Active")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("longtext");
+
+                    b.Property<int?>("Inventory")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MaximumQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("double");
+
+                    b.Property<int>("ProductTypeId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoriaId");
+                    b.HasIndex("CategoryId");
 
-                    b.HasIndex("TipoProdutoId");
+                    b.HasIndex("ProductTypeId");
 
-                    b.ToTable("Produtos");
+                    b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("Suculentas.Domain.ProductType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("productTypes");
+                });
+
+            modelBuilder.Entity("Suculentas.Domain.Sale", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("double");
+
+                    b.Property<bool>("Shipping")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<double?>("ShippingValue")
+                        .HasColumnType("double");
+
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("StatusPagSeguro")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("TrackingCode")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("TransactionCode")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StatusId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Sales");
                 });
 
             modelBuilder.Entity("Suculentas.Domain.Status", b =>
@@ -374,71 +467,12 @@ namespace Suculentas.Repository.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Nome")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
                     b.ToTable("Status");
-                });
-
-            modelBuilder.Entity("Suculentas.Domain.TipoProduto", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Nome")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TipoProduto");
-                });
-
-            modelBuilder.Entity("Suculentas.Domain.Venda", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("CodigoRastreio")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("CodigoTransacao")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<DateTime>("DataVenda")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Endereco")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<bool>("Frete")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<int>("StatusId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("StatusPagSeguro")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Valor")
-                        .HasColumnType("double");
-
-                    b.Property<double?>("ValorFrete")
-                        .HasColumnType("double");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("StatusId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Vendas");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -477,13 +511,15 @@ namespace Suculentas.Repository.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Suculentas.Domain.Endereco", b =>
+            modelBuilder.Entity("Suculentas.Domain.Address", b =>
                 {
                     b.HasOne("Suculentas.Domain.Identity.User", "User")
-                        .WithMany("Enderecos")
+                        .WithMany("Adresses")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Suculentas.Domain.Identity.UserRole", b =>
@@ -491,14 +527,12 @@ namespace Suculentas.Repository.Migrations
                     b.HasOne("Suculentas.Domain.Identity.Role", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Suculentas.Domain.Identity.Role", "Role")
                         .WithMany("UserRoles")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("RoleId1");
 
                     b.HasOne("Suculentas.Domain.Identity.User", null)
                         .WithMany()
@@ -508,53 +542,107 @@ namespace Suculentas.Repository.Migrations
 
                     b.HasOne("Suculentas.Domain.Identity.User", "User")
                         .WithMany("UserRoles")
-                        .HasForeignKey("UserId1")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("UserId1");
+
+                    b.Navigation("Role");
+
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Suculentas.Domain.Pedido", b =>
+            modelBuilder.Entity("Suculentas.Domain.Order", b =>
                 {
-                    b.HasOne("Suculentas.Domain.Produto", "Produto")
-                        .WithMany("Pedidos")
-                        .HasForeignKey("ProdutoId")
+                    b.HasOne("Suculentas.Domain.Product", "Product")
+                        .WithMany("Orders")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Suculentas.Domain.Venda", "Venda")
-                        .WithMany("Pedidos")
-                        .HasForeignKey("VendaId")
+                    b.HasOne("Suculentas.Domain.Sale", "Sale")
+                        .WithMany("Orders")
+                        .HasForeignKey("SaleId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("Sale");
                 });
 
-            modelBuilder.Entity("Suculentas.Domain.Produto", b =>
+            modelBuilder.Entity("Suculentas.Domain.Product", b =>
                 {
-                    b.HasOne("Suculentas.Domain.Categoria", "Categoria")
-                        .WithMany("Produtos")
-                        .HasForeignKey("CategoriaId")
+                    b.HasOne("Suculentas.Domain.Category", "Category")
+                        .WithMany("Products")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Suculentas.Domain.TipoProduto", "TipoProduto")
-                        .WithMany("Produtos")
-                        .HasForeignKey("TipoProdutoId")
+                    b.HasOne("Suculentas.Domain.ProductType", "TipoProduto")
+                        .WithMany("Products")
+                        .HasForeignKey("ProductTypeId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("TipoProduto");
                 });
 
-            modelBuilder.Entity("Suculentas.Domain.Venda", b =>
+            modelBuilder.Entity("Suculentas.Domain.Sale", b =>
                 {
                     b.HasOne("Suculentas.Domain.Status", "Status")
-                        .WithMany("Vendas")
+                        .WithMany("Sales")
                         .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Suculentas.Domain.Identity.User", "User")
-                        .WithMany("Vendas")
+                        .WithMany("Sales")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Status");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Suculentas.Domain.Category", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("Suculentas.Domain.Identity.Role", b =>
+                {
+                    b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("Suculentas.Domain.Identity.User", b =>
+                {
+                    b.Navigation("Adresses");
+
+                    b.Navigation("Sales");
+
+                    b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("Suculentas.Domain.Product", b =>
+                {
+                    b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("Suculentas.Domain.ProductType", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("Suculentas.Domain.Sale", b =>
+                {
+                    b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("Suculentas.Domain.Status", b =>
+                {
+                    b.Navigation("Sales");
                 });
 #pragma warning restore 612, 618
         }

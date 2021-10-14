@@ -13,16 +13,15 @@ namespace Suculentas.Repository
     {
         public SuculentasContext(DbContextOptions<SuculentasContext> options): base(options){}
 
-        public DbSet<Categoria> Categorias { get; set; }
-        public DbSet<Endereco> Enderecos { get; set; }
-        public DbSet<Gastos> Gastos { get; set; }
+        public DbSet<Category> Categorys { get; set; }
+        public DbSet<Address> Adresses { get; set; }
         public DbSet<LogEmail> LogEmails { get; set; }
-        public DbSet<LogExcecao> LogExcecoes { get; set; }
-        public DbSet<Pedido> Pedidos { get; set; }
-        public DbSet<Produto> Produtos { get; set; }
+        public DbSet<LogException> LogExceptions { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<Product> Products { get; set; }
         public DbSet<Status> Status { get; set; }
-        public DbSet<TipoProduto> TipoProdutos { get; set; }
-        public DbSet<Venda> Vendas { get; set; }
+        public DbSet<ProductType> productTypes { get; set; }
+        public DbSet<Sale> Sales { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -37,14 +36,14 @@ namespace Suculentas.Repository
                     .HasForeignKey(ur => ur.RoleId)
                     .IsRequired();
 
-                userRole.HasOne(ur => ur.Role)
+                userRole.HasOne(ur => ur.User)
                     .WithMany(r => r.UserRoles)
                     .HasForeignKey(ur => ur.UserId)
                     .IsRequired();
             });
 
-            modelBuilder.Entity<Pedido>()
-                .HasKey(PE => new { PE.VendaId, PE.ProdutoId});
+            modelBuilder.Entity<Order>()
+                .HasKey(PE => new { PE.SaleId, PE.ProductId});
 
             foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
                 {

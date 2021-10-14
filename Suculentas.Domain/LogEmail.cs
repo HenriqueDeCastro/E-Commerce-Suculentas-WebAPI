@@ -7,9 +7,9 @@ namespace Suculentas.Domain
     public class LogEmail
     {
         public int Id { get; set; }
-        public string Para { get; set; }
-        public string Assunto { get; set; }
-        public string Corpo { get; set; }
-        public string ExceptionMensagem { get; set; }
+        public string To { get; set; }
+        public string Topic { get; set; }
+        public string Body { get; set; }
+        public string ExceptionMessage { get; set; }
     }
 }

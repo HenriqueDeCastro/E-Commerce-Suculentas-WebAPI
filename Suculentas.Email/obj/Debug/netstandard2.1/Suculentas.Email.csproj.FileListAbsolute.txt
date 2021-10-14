@@ -7,3 +7,12 @@ C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Email
 C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Email\obj\Debug\netstandard2.1\Suculentas.Email.pdb
 C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Email\obj\Debug\netstandard2.1\Suculentas.Email.csproj.AssemblyReference.cache
 C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Email\obj\Debug\netstandard2.1\Suculentas.Email.csproj.CoreCompileInputs.cache
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Email\bin\Debug\netstandard2.1\Suculentas.Email.deps.json
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Email\bin\Debug\netstandard2.1\Suculentas.Email.dll
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Email\bin\Debug\netstandard2.1\Suculentas.Email.pdb
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Email\obj\Debug\netstandard2.1\Suculentas.Email.csproj.AssemblyReference.cache
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Email\obj\Debug\netstandard2.1\Suculentas.Email.AssemblyInfoInputs.cache
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Email\obj\Debug\netstandard2.1\Suculentas.Email.AssemblyInfo.cs
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Email\obj\Debug\netstandard2.1\Suculentas.Email.csproj.CoreCompileInputs.cache
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Email\obj\Debug\netstandard2.1\Suculentas.Email.dll
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Email\obj\Debug\netstandard2.1\Suculentas.Email.pdb

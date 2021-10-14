@@ -10,3 +10,15 @@ C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Repos
 C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Repository\obj\Debug\netstandard2.1\Suculentas.Repository.pdb
 C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Repository\obj\Debug\netstandard2.1\Suculentas.Repository.csproj.AssemblyReference.cache
 C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Repository\obj\Debug\netstandard2.1\Suculentas.Repository.csproj.CoreCompileInputs.cache
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Repository\bin\Debug\netstandard2.1\Suculentas.Repository.deps.json
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Repository\bin\Debug\netstandard2.1\Suculentas.Repository.dll
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Repository\bin\Debug\netstandard2.1\Suculentas.Repository.pdb
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Repository\bin\Debug\netstandard2.1\Suculentas.Domain.dll
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Repository\bin\Debug\netstandard2.1\Suculentas.Domain.pdb
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Repository\obj\Debug\netstandard2.1\Suculentas.Repository.csproj.AssemblyReference.cache
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Repository\obj\Debug\netstandard2.1\Suculentas.Repository.AssemblyInfoInputs.cache
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Repository\obj\Debug\netstandard2.1\Suculentas.Repository.AssemblyInfo.cs
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Repository\obj\Debug\netstandard2.1\Suculentas.Repository.csproj.CoreCompileInputs.cache
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Repository\obj\Debug\netstandard2.1\Suculentas.Repository.csproj.CopyComplete
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Repository\obj\Debug\netstandard2.1\Suculentas.Repository.dll
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Repository\obj\Debug\netstandard2.1\Suculentas.Repository.pdb

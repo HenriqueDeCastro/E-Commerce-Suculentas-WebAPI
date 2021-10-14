@@ -8,27 +8,25 @@
     ".NETStandard,Version=v2.1": []
   },
   "packageFolders": {
-    "C:\\Users\\SAMSUNG\\.nuget\\packages\\": {},
+    "C:\\Users\\castr\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.PagSeguro\\Suculentas.PagSeguro.csproj",
+      "projectUniqueName": "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.PagSeguro\\Suculentas.PagSeguro.csproj",
       "projectName": "Suculentas.PagSeguro",
-      "projectPath": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.PagSeguro\\Suculentas.PagSeguro.csproj",
-      "packagesPath": "C:\\Users\\SAMSUNG\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.PagSeguro\\obj\\",
+      "projectPath": "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.PagSeguro\\Suculentas.PagSeguro.csproj",
+      "packagesPath": "C:\\Users\\castr\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.PagSeguro\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\SAMSUNG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\castr\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
@@ -70,7 +68,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

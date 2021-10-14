@@ -1,7 +1,7 @@
 ## Suculentas da Rô - Servidor
 
 ### Gerar release:
--- dotnet publish -c Release -o C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Publish
+-- dotnet publish -c Release -o .\Suculentas.Publish
 
 ### Gerar Migration e DataBase
 -- cd .\Suculentas.Repository\

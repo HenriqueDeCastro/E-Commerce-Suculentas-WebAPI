@@ -7,3 +7,12 @@ C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.PagSe
 C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.PagSeguro\obj\Debug\netstandard2.1\Suculentas.PagSeguro.pdb
 C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.PagSeguro\obj\Debug\netstandard2.1\Suculentas.PagSeguro.csproj.AssemblyReference.cache
 C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.PagSeguro\obj\Debug\netstandard2.1\Suculentas.PagSeguro.csproj.CoreCompileInputs.cache
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.PagSeguro\bin\Debug\netstandard2.1\Suculentas.PagSeguro.deps.json
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.PagSeguro\bin\Debug\netstandard2.1\Suculentas.PagSeguro.dll
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.PagSeguro\bin\Debug\netstandard2.1\Suculentas.PagSeguro.pdb
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.PagSeguro\obj\Debug\netstandard2.1\Suculentas.PagSeguro.csproj.AssemblyReference.cache
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.PagSeguro\obj\Debug\netstandard2.1\Suculentas.PagSeguro.AssemblyInfoInputs.cache
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.PagSeguro\obj\Debug\netstandard2.1\Suculentas.PagSeguro.AssemblyInfo.cs
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.PagSeguro\obj\Debug\netstandard2.1\Suculentas.PagSeguro.csproj.CoreCompileInputs.cache
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.PagSeguro\obj\Debug\netstandard2.1\Suculentas.PagSeguro.dll
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.PagSeguro\obj\Debug\netstandard2.1\Suculentas.PagSeguro.pdb

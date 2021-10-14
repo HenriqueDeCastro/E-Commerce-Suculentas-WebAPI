@@ -1,25 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.WebApi\\Suculentas.WebApi.csproj": {}
+    "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.WebApi\\Suculentas.WebApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Business\\Suculentas.Business.csproj": {
+    "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.Business\\Suculentas.Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Business\\Suculentas.Business.csproj",
+        "projectUniqueName": "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.Business\\Suculentas.Business.csproj",
         "projectName": "Suculentas.Business",
-        "projectPath": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Business\\Suculentas.Business.csproj",
-        "packagesPath": "C:\\Users\\SAMSUNG\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Business\\obj\\",
+        "projectPath": "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.Business\\Suculentas.Business.csproj",
+        "packagesPath": "C:\\Users\\castr\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.Business\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\SAMSUNG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\castr\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
@@ -35,8 +34,8 @@
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Domain\\Suculentas.Domain.csproj": {
-                "projectPath": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Domain\\Suculentas.Domain.csproj"
+              "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.Domain\\Suculentas.Domain.csproj": {
+                "projectPath": "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.Domain\\Suculentas.Domain.csproj"
               }
             }
           }
@@ -65,26 +64,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Domain\\Suculentas.Domain.csproj": {
+    "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.Domain\\Suculentas.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Domain\\Suculentas.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.Domain\\Suculentas.Domain.csproj",
         "projectName": "Suculentas.Domain",
-        "projectPath": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Domain\\Suculentas.Domain.csproj",
-        "packagesPath": "C:\\Users\\SAMSUNG\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Domain\\obj\\",
+        "projectPath": "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.Domain\\Suculentas.Domain.csproj",
+        "packagesPath": "C:\\Users\\castr\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\SAMSUNG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\castr\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
@@ -132,26 +130,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Email\\Suculentas.Email.csproj": {
+    "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.Email\\Suculentas.Email.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Email\\Suculentas.Email.csproj",
+        "projectUniqueName": "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.Email\\Suculentas.Email.csproj",
         "projectName": "Suculentas.Email",
-        "projectPath": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Email\\Suculentas.Email.csproj",
-        "packagesPath": "C:\\Users\\SAMSUNG\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Email\\obj\\",
+        "projectPath": "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.Email\\Suculentas.Email.csproj",
+        "packagesPath": "C:\\Users\\castr\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.Email\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\SAMSUNG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\castr\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
@@ -193,26 +190,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.PagSeguro\\Suculentas.PagSeguro.csproj": {
+    "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.PagSeguro\\Suculentas.PagSeguro.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.PagSeguro\\Suculentas.PagSeguro.csproj",
+        "projectUniqueName": "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.PagSeguro\\Suculentas.PagSeguro.csproj",
         "projectName": "Suculentas.PagSeguro",
-        "projectPath": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.PagSeguro\\Suculentas.PagSeguro.csproj",
-        "packagesPath": "C:\\Users\\SAMSUNG\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.PagSeguro\\obj\\",
+        "projectPath": "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.PagSeguro\\Suculentas.PagSeguro.csproj",
+        "packagesPath": "C:\\Users\\castr\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.PagSeguro\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\SAMSUNG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\castr\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
@@ -254,26 +250,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Repository\\Suculentas.Repository.csproj": {
+    "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.Repository\\Suculentas.Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Repository\\Suculentas.Repository.csproj",
+        "projectUniqueName": "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.Repository\\Suculentas.Repository.csproj",
         "projectName": "Suculentas.Repository",
-        "projectPath": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Repository\\Suculentas.Repository.csproj",
-        "packagesPath": "C:\\Users\\SAMSUNG\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Repository\\obj\\",
+        "projectPath": "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.Repository\\Suculentas.Repository.csproj",
+        "packagesPath": "C:\\Users\\castr\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.Repository\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\SAMSUNG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\castr\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
@@ -289,8 +284,8 @@
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Domain\\Suculentas.Domain.csproj": {
-                "projectPath": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Domain\\Suculentas.Domain.csproj"
+              "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.Domain\\Suculentas.Domain.csproj": {
+                "projectPath": "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.Domain\\Suculentas.Domain.csproj"
               }
             }
           }
@@ -337,26 +332,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.WebApi\\Suculentas.WebApi.csproj": {
+    "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.WebApi\\Suculentas.WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.WebApi\\Suculentas.WebApi.csproj",
+        "projectUniqueName": "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.WebApi\\Suculentas.WebApi.csproj",
         "projectName": "Suculentas.WebApi",
-        "projectPath": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.WebApi\\Suculentas.WebApi.csproj",
-        "packagesPath": "C:\\Users\\SAMSUNG\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.WebApi\\obj\\",
+        "projectPath": "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.WebApi\\Suculentas.WebApi.csproj",
+        "packagesPath": "C:\\Users\\castr\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.WebApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\SAMSUNG\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\castr\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
@@ -372,20 +366,20 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Business\\Suculentas.Business.csproj": {
-                "projectPath": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Business\\Suculentas.Business.csproj"
+              "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.Business\\Suculentas.Business.csproj": {
+                "projectPath": "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.Business\\Suculentas.Business.csproj"
               },
-              "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Domain\\Suculentas.Domain.csproj": {
-                "projectPath": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Domain\\Suculentas.Domain.csproj"
+              "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.Domain\\Suculentas.Domain.csproj": {
+                "projectPath": "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.Domain\\Suculentas.Domain.csproj"
               },
-              "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Email\\Suculentas.Email.csproj": {
-                "projectPath": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Email\\Suculentas.Email.csproj"
+              "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.Email\\Suculentas.Email.csproj": {
+                "projectPath": "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.Email\\Suculentas.Email.csproj"
               },
-              "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.PagSeguro\\Suculentas.PagSeguro.csproj": {
-                "projectPath": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.PagSeguro\\Suculentas.PagSeguro.csproj"
+              "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.PagSeguro\\Suculentas.PagSeguro.csproj": {
+                "projectPath": "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.PagSeguro\\Suculentas.PagSeguro.csproj"
               },
-              "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Repository\\Suculentas.Repository.csproj": {
-                "projectPath": "C:\\Users\\SAMSUNG\\OneDrive\\Documentos\\Projetos\\Suculentas\\Server\\Suculentas.Repository\\Suculentas.Repository.csproj"
+              "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.Repository\\Suculentas.Repository.csproj": {
+                "projectPath": "C:\\Users\\castr\\Documents\\Projetos\\Suculentas da Rô\\Suculentas_da_Ro_Server\\Suculentas.Repository\\Suculentas.Repository.csproj"
               }
             }
           }
@@ -449,7 +443,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

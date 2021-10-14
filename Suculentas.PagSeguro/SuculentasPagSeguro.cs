@@ -51,13 +51,13 @@ namespace Suculentas.PagSeguro
             return code.InnerText;
         }
 
-        public ConsultaTransacaoPagSeguroTransactionDTO ConsultaPorCodigoReferencia(string emailUsuario, string token, string urlConsultaTransacao, string codigoReferencia)
+        public PagSeguroTransactionDTO ConsultByReferenceCode(string emailUser, string token, string urlConsultaTransaction, string referenceCode)
         {
-            ConsultaTransacaoPagSeguroTransactionDTO consulta = new ConsultaTransacaoPagSeguroTransactionDTO();
+            PagSeguroTransactionDTO consult = new PagSeguroTransactionDTO();
 
             try
             {
-                string uri = string.Concat(urlConsultaTransacao, codigoReferencia, "?email=", emailUsuario, "&token=", token);
+                string uri = string.Concat(urlConsultaTransaction, referenceCode, "?email=", emailUser, "&token=", token);
 
                 HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(uri);
                 request.Method = "GET";
@@ -84,19 +84,19 @@ namespace Suculentas.PagSeguro
                                 {
                                     if (childNode.Name == "reference")
                                     {
-                                        consulta.Reference = childNode.InnerText;
+                                        consult.Reference = childNode.InnerText;
                                     }
                                     else if (childNode.Name == "code")
                                     {
-                                        consulta.Code = childNode.InnerText;
+                                        consult.Code = childNode.InnerText;
                                     }
                                     else if (childNode.Name == "type")
                                     {
-                                        consulta.type = Convert.ToInt32(childNode.InnerText);
+                                        consult.type = Convert.ToInt32(childNode.InnerText);
                                     }
                                     else if (childNode.Name == "status")
                                     {
-                                        consulta.Status = Convert.ToInt32(childNode.InnerText);
+                                        consult.Status = Convert.ToInt32(childNode.InnerText);
                                     }
                                     else if (childNode.Name == "paymentMethod")
                                     {
@@ -104,7 +104,7 @@ namespace Suculentas.PagSeguro
                                         {
                                             if (nodePaymentMethod.Name == "type")
                                             {
-                                                consulta.PaymentMethodType = Convert.ToInt32(childNode.InnerText);
+                                                consult.PaymentMethodType = Convert.ToInt32(childNode.InnerText);
                                             }
                                         }
                                     }
@@ -122,7 +122,7 @@ namespace Suculentas.PagSeguro
                 throw ex;
             }
 
-            return consulta;
+            return consult;
         }
 
         /// <summary>
@@ -133,10 +133,10 @@ namespace Suculentas.PagSeguro
         /// <param name="urlCancelamento">URL Cancelamento.</param>
         /// <param name="transactionCode">Código da transação.</param>
         /// <returns>Bool. Caso true, transação foi cancelada. Caso false, transação não foi cancelada.</returns>
-        public bool CancelarTransacao(string emailUsuario, string token, string urlCancelamento, string transactionCode)
+        public bool CancelTransaction(string emailUser, string token, string urlCancel, string transactionCode)
         {
             //Monta url completa para solicitação.
-            string urlCompleta = string.Concat(urlCancelamento);
+            string urlCompleta = string.Concat(urlCancel);
 
             //String que receberá o XML de retorno.
             string xmlString = null;
@@ -149,12 +149,12 @@ namespace Suculentas.PagSeguro
 
                 //PostData.
                 System.Collections.Specialized.NameValueCollection postData = new System.Collections.Specialized.NameValueCollection();
-                postData.Add("email", emailUsuario);
+                postData.Add("email", emailUser);
                 postData.Add("token", token);
                 postData.Add("transactionCode", transactionCode);
 
                 //Faz o POST e retorna o XML contendo resposta do servidor do pagseguro.
-                var result = wc.UploadValues(urlCancelamento, postData);
+                var result = wc.UploadValues(urlCancel, postData);
 
                 //Obtém string do XML.
                 xmlString = Encoding.ASCII.GetString(result);
@@ -172,20 +172,20 @@ namespace Suculentas.PagSeguro
             var xmlResult = xmlDoc.GetElementsByTagName("result");
 
             //Retorno.
-            bool retorno;
+            bool returnValue;
 
             //Verifica se tem a tag resultado.
             if (xmlResult.Count > 0)
             {
-                retorno = xmlResult[0].InnerText == "OK";
+                returnValue = xmlResult[0].InnerText == "OK";
             }
             else
             {
-                retorno = false;
+                returnValue = false;
             }
 
             //Retorno do método.
-            return retorno;
+            return returnValue;
         }
     }
 }

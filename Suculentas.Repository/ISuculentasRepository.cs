@@ -10,55 +10,51 @@ namespace Suculentas.Repository
 {
     public interface ISuculentasRepository
     {
-        //GERAL
+        // GENERAL
         void Add<T>(T entity) where T: class;
         void Update<T>(T entity) where T: class;
         void Delete<T>(T entity) where T: class;
         Task<bool> SaveChangesAsync();
 
-        //CATEGORIA
-        Task<Categoria[]> GetAllCategorias();        
-        Task<Categoria[]> GetAllCategoriasSemProdutos();        
-        Task<Categoria[]> GetAllCategoriasPagInicial();
-        Task<Categoria[]> GetAllCategoriasPagInicialEmpresa();
-        Task<Categoria> GetAllCategoriaById(int Id);
-        Task<CategoriaPagination> GetAllCategoriaByCliente(int Id, int pageAtual, string orderBy, string search);        
-        Task<CategoriaPagination> GetAllCategoriaByEmpresa(int Id, int pageAtual, string orderBy, string search);                
+        // ADDRESS
+        Task<Address> GetAllAddressById(int id);        
+        Task<Address[]> GetAllAddressByUserId(int userId); 
 
-        //ENDEREÇO
-        Task<Endereco> GetAllEnderecoById(int Id);        
-        Task<Endereco[]> GetAllEnderecoByUserId(int UserId);              
+        // CATEGORY
+        Task<Category[]> GetAllCategorys();        
+        Task<Category[]> GetAllCategorysWithoutProducts();        
+        Task<Category[]> GetAllCategorysHomepage();
+        Task<Category[]> GetAllCategorysHomepageCompany();
+        Task<Category> GetAllCategoryById(int id);
+        Task<CategoryPagination> GetAllCategoryByClient(int id, int currentPage, string orderBy, string search);        
+        Task<CategoryPagination> GetAllCategoryByCompany(int id, int currentPage, string orderBy, string search);                
 
-        //GASTOS  
-        Task<Gastos[]> GetAllGastos();     
-        Task<Gastos> GetAllGastosById(int Id);     
-        Task<Gastos[]> GetAllGastosByData(DateTime Data);     
+        // ORDER
+        Task<Order> GetAllOrderById(int id);       
+        Task<Order[]> GetAllOrderBySaleId(int saleId);       
 
-        //PEDIDO
-        Task<Pedido> GetAllPedidoById(int Id);       
-        Task<Pedido[]> GetAllPedidoByVendaId(int VendaId);       
+        //PRODUCT
+        Task<Product> GetAllProductById(int Id);       
+        Task<Product[]> GetAllProductByCategoryId(int categoryId);  
 
-        //PRODUTO
-        Task<Produto> GetAllProdutoById(int Id);       
-        Task<Produto[]> GetAllProdutoByCategoriaId(int CategoriaId);  
+        // PRODUCT TYPE
+        Task<ProductType[]> GetAllProductType();       
+        Task<ProductType[]> GetAllProductTypeWithoutProduct();       
+        Task<ProductType> GetAllProductTypeById(int id);   
+        Task<ProductType> GetAllProductTypeByName(string name);
 
-        //STATUS
+        // STATUS
         Task<Status[]> GetAllStatus();       
         Task<Status[]> GetAllStatusById(int Id);  
 
-        //TIPO PRODUTO
-        Task<TipoProduto[]> GetAllTipoProduto();       
-        Task<TipoProduto[]> GetAllTipoProdutoSemProduto();       
-        Task<TipoProduto> GetAllTipoProdutoById(int Id);   
-
-        //VENDA
-        Task<Venda[]> GetAllVenda();       
-        Task<Venda> GetAllVendaById(int Id);       
-        Task<Venda> GetAllVendaByIdSemInclude(int Id);
-        Task<Venda> GetAllVendaByIdEmpresa(int Id);
-        Task<VendaPagination> GetAllVendaByUserId(int UserId, int StatusId, int pageAtual);       
-        Task<VendaPagination> GetAllVendaByStatusId(int StatusId, int pageAtual);       
-        Task<VendaStatusCount[]> GetAllVendaCountStatusEmpresa();
-        Task<VendaStatusCount[]> GetAllVendaCountStatusUser(int UserId);
+        // SALE
+        Task<Sale[]> GetAllSales();       
+        Task<Sale> GetAllSaleById(int id);       
+        Task<Sale> GetAllSaleByIdWithoutInclude(int id);
+        Task<Sale> GetAllSaleByIdCompany(int id);
+        Task<SalePagination> GetAllSaleByStatusId(int statusId, int currentPage);       
+        Task<SalePagination> GetAllSaleByUserId(int userId, int statusId, int currentPage);       
+        Task<SaleStatusCount[]> GetAllSaleCountStatusCompany();
+        Task<SaleStatusCount[]> GetAllSaleCountStatusUser(int userId);
     }
 }

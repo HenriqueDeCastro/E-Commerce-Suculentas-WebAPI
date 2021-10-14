@@ -4,9 +4,8 @@ namespace Suculentas.Business
 {
     public interface ISuculentasBusiness
     {
-        // VENDA
-        bool VerificaProdutoDisponivel(Produto produto, int quantidade);
-        string NomeAmigavelStatusPagSeguro(int status);
-        int StatusASerAtualizada(int status, int statusPagseguro);
+        bool CheckProductAvailable(Product product, int amount);
+        string FriendlyNameStatusPagSeguro(int status);
+        int DefineStatusUpdated(int status, int statusPagseguro);
     }
 }

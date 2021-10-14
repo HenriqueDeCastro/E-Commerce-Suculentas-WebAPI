@@ -10,3 +10,15 @@ C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Busin
 C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Business\obj\Release\netstandard2.1\Suculentas.Business.pdb
 C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Business\obj\Release\netstandard2.1\Suculentas.Business.csproj.AssemblyReference.cache
 C:\Users\SAMSUNG\OneDrive\Documentos\Projetos\Suculentas\Server\Suculentas.Business\obj\Release\netstandard2.1\Suculentas.Business.csproj.CoreCompileInputs.cache
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Business\bin\Release\netstandard2.1\Suculentas.Business.deps.json
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Business\bin\Release\netstandard2.1\Suculentas.Business.dll
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Business\bin\Release\netstandard2.1\Suculentas.Business.pdb
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Business\bin\Release\netstandard2.1\Suculentas.Domain.dll
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Business\bin\Release\netstandard2.1\Suculentas.Domain.pdb
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Business\obj\Release\netstandard2.1\Suculentas.Business.csproj.AssemblyReference.cache
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Business\obj\Release\netstandard2.1\Suculentas.Business.AssemblyInfoInputs.cache
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Business\obj\Release\netstandard2.1\Suculentas.Business.AssemblyInfo.cs
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Business\obj\Release\netstandard2.1\Suculentas.Business.csproj.CoreCompileInputs.cache
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Business\obj\Release\netstandard2.1\Suculentas.Business.csproj.CopyComplete
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Business\obj\Release\netstandard2.1\Suculentas.Business.dll
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Business\obj\Release\netstandard2.1\Suculentas.Business.pdb

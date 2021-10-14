@@ -14,10 +14,13 @@ namespace Suculentas.Domain.Identity
         public string CPF { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime? DataNascimento { get; set; }
+        public DateTime? BirthDate { get; set; }
+
+        [Column(TypeName = "bit")]
+        public Boolean AcceptTerms { get; set; }
 
         public List<UserRole> UserRoles { get; set; }
-        public List<Venda> Vendas { get; set; }
-        public List<Endereco> Enderecos { get; set; }
+        public List<Sale> Sales { get; set; }
+        public List<Address> Adresses { get; set; }
     }
 }

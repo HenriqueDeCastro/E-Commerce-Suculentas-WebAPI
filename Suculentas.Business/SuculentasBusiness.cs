@@ -14,69 +14,65 @@ namespace Suculentas.Business
         }
 
         // PAGSEGURO
-        public string NomeAmigavelStatusPagSeguro(int status)
+        public string FriendlyNameStatusPagSeguro(int status)
         {
-            string retorno;
-
-            if (status == Int16.Parse(_config.GetSection("StatusPagSeguro:NaoExisteTransacao").Value))
+            if (status == Int16.Parse(_config.GetSection("AppSettings:StatusPagSeguro:NaoExisteTransacao").Value))
             {
-                retorno = "Nenhuma Transação Encontrada";
+                return "Nenhuma Transaï¿½ï¿½o Encontrada";
             }
-            else if (status == Int16.Parse(_config.GetSection("StatusPagSeguro:AguardandoPagamento").Value))
+            else if (status == Int16.Parse(_config.GetSection("AppSettings:StatusPagSeguro:AguardandoPagamento").Value))
             {
-                retorno = "Aguardando Pagamento";
+                return "Aguardando Pagamento";
             }
-            else if (status == Int16.Parse(_config.GetSection("StatusPagSeguro:EmAnalise").Value))
+            else if (status == Int16.Parse(_config.GetSection("AppSettings:StatusPagSeguro:EmAnalise").Value))
             {
-                retorno = "Em Análise";
+                return "Em Anï¿½lise";
             }
-            else if (status == Int16.Parse(_config.GetSection("StatusPagSeguro:Paga").Value))
+            else if (status == Int16.Parse(_config.GetSection("AppSettings:StatusPagSeguro:Paga").Value))
             {
-                retorno = "Pago";
+                return "Pago";
             }
-            else if (status == Int16.Parse(_config.GetSection("StatusPagSeguro:Disponivel").Value))
+            else if (status == Int16.Parse(_config.GetSection("AppSettings:StatusPagSeguro:Disponivel").Value))
             {
-                retorno = "Disponível";
+                return "Disponï¿½vel";
             }
-            else if (status == Int16.Parse(_config.GetSection("StatusPagSeguro:EmDisputa").Value))
+            else if (status == Int16.Parse(_config.GetSection("AppSettings:StatusPagSeguro:EmDisputa").Value))
             {
-                retorno = "Em Disputa";
+                return "Em Disputa";
             }
-            else if (status == Int16.Parse(_config.GetSection("StatusPagSeguro:Devolvida").Value))
+            else if (status == Int16.Parse(_config.GetSection("AppSettings:StatusPagSeguro:Devolvida").Value))
             {
-                retorno = "Devolvida";
+                return "Devolvida";
             }
-            else if (status == Int16.Parse(_config.GetSection("StatusPagSeguro:Cancelada").Value))
+            else if (status == Int16.Parse(_config.GetSection("AppSettings:StatusPagSeguro:Cancelada").Value))
             {
-                retorno = "Cancelada";
+                return "Cancelada";
             }
-            else if (status == Int16.Parse(_config.GetSection("StatusPagSeguro:Debitado").Value))
+            else if (status == Int16.Parse(_config.GetSection("AppSettings:StatusPagSeguro:Debitado").Value))
             {
-                retorno = "Debitado (Devolvido)";
+                return "Debitado (Devolvido)";
             }
-            else if (status == Int16.Parse(_config.GetSection("StatusPagSeguro:RetencaoTemporaria").Value))
+            else if (status == Int16.Parse(_config.GetSection("AppSettings:StatusPagSeguro:RetencaoTemporaria").Value))
             {
-                retorno = "Retenção Temp.";
+                return "Retenï¿½ï¿½o Temp.";
             }
             else
             {
-                retorno = "Falha ao resolver status pagseguro.";
+                return "Falha ao resolver status pagseguro.";
             }
-
-            return retorno;
         }
 
         // VENDA
-        public bool VerificaProdutoDisponivel(Produto produto, int quantidade) {
+        public bool CheckProductAvailable(Product product, int quantity) {
             
-            if (produto.TipoProdutoId == Int16.Parse(_config.GetSection("TipoProduto:Encomenda").Value)) {
-                if (produto.Ativo == true && produto.QuantidadeMaxima > 0 && produto.QuantidadeMaxima >= quantidade) {
+            if (product.ProductTypeId == Int16.Parse(_config.GetSection("AppSettings:ProductType:Encomenda").Value)) {
+                if (product.Active == true && product.MaximumQuantity > 0 && product.MaximumQuantity >= quantity) {
                     return true;
                 } else {
                     return false;
                 }
             } else {
-                if (produto.Ativo == true && produto.Estoque > 0 && produto.Estoque >= quantidade) {
+                if (product.Active == true && product.Inventory > 0 && product.Inventory >= quantity) {
                     return true;
                 } else {
                     return false;
@@ -84,33 +80,33 @@ namespace Suculentas.Business
             }
         }
 
-        public int StatusASerAtualizada(int status, int statusPagseguro)
+        public int DefineStatusUpdated(int status, int statusPagseguro)
         {
             // Aguardando Pagamento
-            if(statusPagseguro == Int16.Parse(_config.GetSection("StatusPagSeguro:AguardandoPagamento").Value) 
-                    || statusPagseguro == Int16.Parse(_config.GetSection("StatusPagSeguro:EmAnalise").Value))
+            if(statusPagseguro == Int16.Parse(_config.GetSection("AppSettings:StatusPagSeguro:AguardandoPagamento").Value) 
+                    || statusPagseguro == Int16.Parse(_config.GetSection("AppSettings:StatusPagSeguro:EmAnalise").Value))
             {
-                return Int16.Parse(_config.GetSection("StatusVendas:AguardandoPagamento").Value);
+                return Int16.Parse(_config.GetSection("AppSettings:StatusSales:AguardandoPagamento").Value);
             }
             // Paga ou Disponivel
-            else if(statusPagseguro == Int16.Parse(_config.GetSection("StatusPagSeguro:Paga").Value) 
-                    || (statusPagseguro == Int16.Parse(_config.GetSection("StatusPagSeguro:Disponivel").Value) 
-                        && status == Int16.Parse(_config.GetSection("StatusVendas:AguardandoPagamento").Value)))
+            else if(statusPagseguro == Int16.Parse(_config.GetSection("AppSettings:StatusPagSeguro:Paga").Value) 
+                    || (statusPagseguro == Int16.Parse(_config.GetSection("AppSettings:StatusPagSeguro:Disponivel").Value) 
+                        && status == Int16.Parse(_config.GetSection("AppSettings:StatusSales:AguardandoPagamento").Value)))
             {
-                return Int16.Parse(_config.GetSection("StatusVendas:AguardandoEnvio").Value);
+                return Int16.Parse(_config.GetSection("AppSettings:StatusSales:AguardandoEnvio").Value);
             }
             // Em Disputa
-            else if(statusPagseguro == Int16.Parse(_config.GetSection("StatusPagSeguro:EmDisputa").Value)
-                    || statusPagseguro == Int16.Parse(_config.GetSection("StatusPagSeguro:RetencaoTemporaria").Value))
+            else if(statusPagseguro == Int16.Parse(_config.GetSection("AppSettings:StatusPagSeguro:EmDisputa").Value)
+                    || statusPagseguro == Int16.Parse(_config.GetSection("AppSettings:StatusPagSeguro:RetencaoTemporaria").Value))
             {
-                return Int16.Parse(_config.GetSection("StatusVendas:EmDisputa").Value);
+                return Int16.Parse(_config.GetSection("AppSettings:StatusSales:EmDisputa").Value);
             }
             //Devolvida ou Cancelada
-            else if(statusPagseguro == Int16.Parse(_config.GetSection("StatusPagSeguro:Devolvida").Value) 
-                    || statusPagseguro == Int16.Parse(_config.GetSection("StatusPagSeguro:Cancelada").Value)
-                    || statusPagseguro == Int16.Parse(_config.GetSection("StatusPagSeguro:Debitado").Value))
+            else if(statusPagseguro == Int16.Parse(_config.GetSection("AppSettings:StatusPagSeguro:Devolvida").Value) 
+                    || statusPagseguro == Int16.Parse(_config.GetSection("AppSettings:StatusPagSeguro:Cancelada").Value)
+                    || statusPagseguro == Int16.Parse(_config.GetSection("AppSettings:StatusPagSeguro:Debitado").Value))
             {
-                return Int16.Parse(_config.GetSection("StatusVendas:Cancelado").Value);
+                return Int16.Parse(_config.GetSection("AppSettings:StatusSales:Cancelado").Value);
             }
             else
             {

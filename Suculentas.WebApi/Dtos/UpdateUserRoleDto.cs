@@ -1,6 +1,6 @@
 namespace Suculentas.WebApi.Dtos
 {
-    public class UpdateUserRoleDto
+    public class UpdateUserRoleDTO
     {
         public string Email { get; set; }
         public string Role { get; set; }

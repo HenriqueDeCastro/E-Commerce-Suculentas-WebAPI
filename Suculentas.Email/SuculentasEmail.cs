@@ -8,33 +8,33 @@ namespace Suculentas.Email
 {
     public class SuculentasEmail: ISuculentasEmail
     {
-        public bool EnviarEmailSuculentas(string EmailFrom, string Titulo, string Mensagem)
+        public bool SendEmailSuculentas(string from, string title, string message)
         {
             try
             {
-                SmtpClient cliente = new SmtpClient();
-                NetworkCredential credenciais = new NetworkCredential();
-                MailMessage mensagem = new MailMessage();
+                SmtpClient client = new SmtpClient();
+                NetworkCredential credentials = new NetworkCredential();
+                MailMessage mail = new MailMessage();
 
-                cliente.Host = "server.hostingnow.com.br";
-                cliente.Port = 587;
-                cliente.EnableSsl = true;
-                cliente.UseDefaultCredentials = false;
-                cliente.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.Host = "server.hostingnow.com.br";
+                client.Port = 587;
+                client.EnableSsl = true;
+                client.UseDefaultCredentials = false;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
 
-                credenciais.UserName = "suculentasdaro@suculentasdaro.com";
-                credenciais.Password = "su20cu20lent@$";
+                credentials.UserName = "suculentasdaro@suculentasdaro.com";
+                credentials.Password = "su20cu20lent@$";
 
-                cliente.Credentials = credenciais;
+                client.Credentials = credentials;
 
-                mensagem.From = new MailAddress("suculentasdaro@suculentasdaro.com", "Suculentas da Rô");
-                mensagem.Subject = Titulo;
-                mensagem.Body = Mensagem;
-                mensagem.IsBodyHtml = true;
-                mensagem.To.Add(new MailAddress(EmailFrom));
+                mail.From = new MailAddress("suculentasdaro@suculentasdaro.com", "Suculentas da Rï¿½");
+                mail.Subject = title;
+                mail.Body = message;
+                mail.IsBodyHtml = true;
+                mail.To.Add(new MailAddress(from));
 
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
-                cliente.Send(mensagem);
+                client.Send(mail);
 
 
                 return true;
@@ -45,44 +45,44 @@ namespace Suculentas.Email
             }
         }
 
-        public bool EnviarEmailSuporte(string EmailFrom, string Titulo, string Mensagem)
+        public bool SendEmailSupport(string from, string title, string message)
         {
             try
             {
-                SmtpClient cliente = new SmtpClient();
-                NetworkCredential credenciais = new NetworkCredential();
-                MailMessage mensagem = new MailMessage();
+                SmtpClient client = new SmtpClient();
+                NetworkCredential credentials = new NetworkCredential();
+                MailMessage mail = new MailMessage();
 
-                cliente.Host = "server.hostingnow.com.br";
-                cliente.Port = 587;
-                cliente.EnableSsl = true;
-                cliente.UseDefaultCredentials = false;
-                cliente.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.Host = "server.hostingnow.com.br";
+                client.Port = 587;
+                client.EnableSsl = true;
+                client.UseDefaultCredentials = false;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
 
-                credenciais.UserName = "suporte@suculentasdaro.com";
-                credenciais.Password = "su20cu20lent@$";
+                credentials.UserName = "suporte@suculentasdaro.com";
+                credentials.Password = "su20cu20lent@$";
 
-                cliente.Credentials = credenciais;
+                client.Credentials = credentials;
 
-                mensagem.From = new MailAddress("suporte@suculentasdaro.com", "Suporte Suculentas");
-                mensagem.Subject = Titulo;
-                mensagem.Body = Mensagem;
-                mensagem.IsBodyHtml = true;
-                mensagem.To.Add(new MailAddress(EmailFrom));
+                mail.From = new MailAddress("suporte@suculentasdaro.com", "Suporte Suculentas");
+                mail.Subject = title;
+                mail.Body = message;
+                mail.IsBodyHtml = true;
+                mail.To.Add(new MailAddress(from));
 
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
-                cliente.Send(mensagem);
+                client.Send(mail);
 
 
                 return true;
             }
-            catch (System.Exception e)
+            catch (System.Exception)
             {
                 throw;
             }
         }
 
-        public string BodyEsqueciSenha(string url, string userName)
+        public string BodyForgotPassword(string url, string userName)
         {
             using (StreamReader html = new StreamReader(@"Templates\BodyEsqueciSenha.html"))
             {
@@ -94,14 +94,14 @@ namespace Suculentas.Email
             }
         }
 
-        public string BodyVendaEnviada(int vendaId, string codigoRastreio, string userName)
+        public string BodySentSale(int saleId, string trackingCode, string userName)
         {
             using (StreamReader html = new StreamReader(@"Templates\BodyVendaEnviada.html"))
             {
                 string body = html.ReadToEnd();
                 body = body.Replace("#UserName#", userName);
-                body = body.Replace("#VendaId#", vendaId.ToString());
-                body = body.Replace("#CodigoRastreio#", codigoRastreio);
+                body = body.Replace("#VendaId#", saleId.ToString());
+                body = body.Replace("#CodigoRastreio#", trackingCode);
 
                 return body;
             }

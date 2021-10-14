@@ -5,7 +5,7 @@ namespace Suculentas.Domain
     public class Status
     {
         public int Id { get; set; }
-        public string Nome { get; set; }
-        public List<Venda> Vendas { get; set; }
+        public string Name { get; set; }
+        public List<Sale> Sales { get; set; }
     }
 }

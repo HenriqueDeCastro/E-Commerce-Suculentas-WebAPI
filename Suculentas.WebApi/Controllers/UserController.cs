@@ -47,20 +47,20 @@ namespace Suculentas.WebApi.Controllers
            this._repo = repo;
         }
 
-        [HttpGet("GetTesteServer")]
+        [HttpGet("getTestServer")]
         public async Task<IActionResult> GetTesteServer()
         {
             try
             {
                 return Ok("Ok");
             }
-            catch (System.Exception ex)
+            catch (System.Exception e)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou: " + ex.Message);
+                return this.StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
 
-        [HttpGet("GetByEmail/{Email}")]
+        [HttpGet("getByEmail/{email}")]
         public async Task<IActionResult> GetUser(string email) 
         {
             try
@@ -71,22 +71,22 @@ namespace Suculentas.WebApi.Controllers
                     return NotFound();
                 }
 
-                var userToReturn = _mapper.Map<UserDto>(user);
+                var userToReturn = _mapper.Map<UserDTO>(user);
 
                 return Ok(userToReturn);
             }
-            catch (System.Exception ex)
+            catch (System.Exception e)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou: " + ex.Message);
+                return this.StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
 
-        [HttpGet("GetByRole/{RoleName}")]
-        public async Task<IActionResult> GetByRole(string RoleName) 
+        [HttpGet("getByRole/{roleName}")]
+        public async Task<IActionResult> GetByRole(string roleName) 
         {
             try
             {                
-                var user = await _userManager.GetUsersInRoleAsync(RoleName);
+                var user = await _userManager.GetUsersInRoleAsync(roleName);
 
                 if(user == null) {
                     return NotFound();
@@ -94,35 +94,39 @@ namespace Suculentas.WebApi.Controllers
 
                 return Ok(user);
             }
-            catch (System.Exception ex)
+            catch (System.Exception e)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou: " + ex.Message);
+                return this.StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
 
-        [HttpPost("Register")]
+        [HttpPost("register")]
         [AllowAnonymous]
-        public async Task<IActionResult> Register(UserDto userDto)
+        public async Task<IActionResult> Register(UserDTO userDto)
         {
             try
             {
                 var user = await _userManager.FindByEmailAsync(userDto.Email);
                 string data = null;
 
-                if (user == null) 
+                if(userDto.AcceptTerms == false) {
+                    return this.StatusCode(StatusCodes.Status406NotAcceptable);
+                }
+                else if (user == null) 
                 {
-                    if(!string.IsNullOrEmpty(userDto.DataNascimento))
+                    if(!string.IsNullOrEmpty(userDto.BirthDate))
                     {
-                        data = userDto.DataNascimento;
+                        data = userDto.BirthDate;
                     }
                     user = new User 
                     {
                         UserName = userDto.Email,
                         FullName = userDto.FullName,
                         CPF = userDto.CPF,
-                        DataNascimento = Convert.ToDateTime(data),
+                        BirthDate = Convert.ToDateTime(data),
                         PhoneNumber = userDto.PhoneNumber,
-                        Email = userDto.Email
+                        Email = userDto.Email,
+                        AcceptTerms = userDto.AcceptTerms
                     };
 
                     var result = await _userManager.CreateAsync(user, userDto.Password);
@@ -132,16 +136,7 @@ namespace Suculentas.WebApi.Controllers
                         var appUser = await _userManager.Users.FirstOrDefaultAsync(u => u.NormalizedEmail == user.Email.ToUpper());
                         var token = GenerateJwToken(appUser).Result;
 
-                        var userToReturn = _mapper.Map<UserDto>(appUser);
-
-                        //var confirmationEmail = Url.Action("ConfirmEmailAddress", "Home", 
-                        //    new { token = token, email = user.Email }, Request.Scheme);
-
-                        //System.IO.File.WriteAllText("confirmationEmail.txt", confirmationEmail);
-
-                        //EnvioEmail email = new EnvioEmail();
-
-                        //email.EnviarEmail("castrohenrique13899@gmail.com","Teste","testando mensagem");
+                        var userToReturn = _mapper.Map<UserDTO>(appUser);
 
                         return Ok(new {
                             token = GenerateJwToken(appUser).Result,
@@ -149,76 +144,76 @@ namespace Suculentas.WebApi.Controllers
                         });
                     }
 
-                    return this.StatusCode(StatusCodes.Status401Unauthorized, result.Errors); 
+                    return this.StatusCode(StatusCodes.Status501NotImplemented, result.Errors); 
                 }
-
-                return this.StatusCode(StatusCodes.Status401Unauthorized, "DuplicateUserName"); 
+                else {
+                    return this.StatusCode(StatusCodes.Status412PreconditionFailed, "DuplicateUserName"); 
+                }
             }
-            catch (System.Exception ex)
+            catch (System.Exception e)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou: " + ex.Message);
+                return this.StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
 
-        [HttpPost("EsqueciSenha")]
+        [HttpPost("forgotPassword")]
         [AllowAnonymous]
-        public async Task<IActionResult> EsqueciSenha(EsqueciSenhaDto EsqueciSenhaDto) 
+        public async Task<IActionResult> EsqueciSenha(ForgotPasswordDTO forgotPassword) 
         {
             try
             {
-                var user = await _userManager.FindByEmailAsync(EsqueciSenhaDto.Email);
+                var user = await _userManager.FindByEmailAsync(forgotPassword.Email);
 
                 if (user != null)
                 {
                     string token = await _userManager.GeneratePasswordResetTokenAsync(user);
                     string tokenWeb = HttpUtility.UrlEncode(token);
 
-                    string resetURL = "https://suculentasdaro.com.br/user/reset/" + user.Email + "/" + tokenWeb;
-                    string corpo = _email.BodyEsqueciSenha(resetURL, user.FullName);
-                    string Assunto = "Solicitação para redefinir sua senha";
+                    string resetURL = "http://localhost:4200/user/reset-password/" + user.Email + "/" + tokenWeb;
+                    //string resetURL = "https://suculentasdaro.com.br/user/reset-password/" + user.Email + "/" + tokenWeb;
+                    string body = _email.BodyForgotPassword(resetURL, user.FullName);
+                    string topic = "Solicitação para redefinir sua senha";
 
                     try
                     {
-                        _email.EnviarEmailSuculentas(user.Email, Assunto, corpo);
+                        _email.SendEmailSuculentas(user.Email, topic, body);
+                        return Ok();
                     }
-                    catch (Exception ex)
+                    catch (Exception e)
                     {
 
                         LogEmail log = new LogEmail();
-                        log.Para = user.Email;
-                        log.Assunto = Assunto;
-                        log.Corpo = corpo;
-                        log.ExceptionMensagem = ex.Message;
+                        log.To = user.Email;
+                        log.Topic = topic;
+                        log.Body = body;
+                        log.ExceptionMessage = e.Message;
 
                         _repo.Add(log);
                         return this.StatusCode(StatusCodes.Status500InternalServerError, "Erro ao enviar e-mail");
                     }
-
-                    return Ok(new ResetarSenhaDto { Token = token, Email = EsqueciSenhaDto.Email });
-
                 }
                 else
                 {
                     return this.StatusCode(StatusCodes.Status404NotFound, "Usuario não encontrado!");
                 }
             }
-            catch (System.Exception ex)
+            catch (System.Exception e)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou: " + ex.Message);
+                return this.StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
 
-        [HttpPost("ResetarSenha")]
+        [HttpPost("resetPassword")]
         [AllowAnonymous]
-        public async Task<IActionResult> ResetarSenha(ResetarSenhaDto ResetarSenhaDto) 
+        public async Task<IActionResult> ResetarSenha(ResetPasswordDTO resetPassword) 
         {
             try
             {
-                var user = await _userManager.FindByEmailAsync(ResetarSenhaDto.Email);
+                var user = await _userManager.FindByEmailAsync(resetPassword.Email);
 
                 if(user != null)
                 {
-                    var result = await _userManager.ResetPasswordAsync(user, ResetarSenhaDto.Token, ResetarSenhaDto.Password);
+                    var result = await _userManager.ResetPasswordAsync(user, resetPassword.Token, resetPassword.Password);
 
                     if(!result.Succeeded) 
                     {
@@ -232,33 +227,34 @@ namespace Suculentas.WebApi.Controllers
                     return this.StatusCode(StatusCodes.Status404NotFound, "Usuario não encontrado!");
                 } 
             }
-            catch (System.Exception ex)
+            catch (System.Exception e)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou: " + ex.Message);
+                return this.StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
 
-        [HttpPut("AtualizarUsuario")]
-        public async Task<IActionResult> Atualizar(UserDto user)
+        [HttpPut("updateUser")]
+        public async Task<IActionResult> Atualizar(UserDTO model)
         {
             try
             {
-                var usuario = await _userManager.FindByEmailAsync(user.Email);
+                var user = await _userManager.FindByEmailAsync(model.Email);
 
-                if(usuario == null) 
+                if(user == null) 
                 {
                     return this.StatusCode(StatusCodes.Status404NotFound, "Usuario não encontrado!");
                 }
 
-                User usuarioAtt = _mapper.Map(user, usuario);
+                User usuarioAtt = _mapper.Map(model, user);
                 var result = await _userManager.UpdateAsync(usuarioAtt);
 
                 if (result.Succeeded) 
                 {
-                    var appUser = await _userManager.Users.FirstOrDefaultAsync(u => u.NormalizedEmail == user.Email.ToUpper());
+                    var appUser = await _userManager.Users.FirstOrDefaultAsync(u => u.NormalizedEmail == model.Email.ToUpper());
+
                     var token = GenerateJwToken(appUser).Result;
 
-                    var userToReturn = _mapper.Map<UserDto>(appUser);
+                    var userToReturn = _mapper.Map<UserDTO>(appUser);
 
                     return Ok(new {
                         token = GenerateJwToken(appUser).Result,
@@ -268,16 +264,16 @@ namespace Suculentas.WebApi.Controllers
 
                 return this.StatusCode(StatusCodes.Status401Unauthorized, result); 
             }
-            catch (System.Exception) 
+            catch (System.Exception e) 
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
+                return this.StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
 
 
-        [HttpPost("Login")]
+        [HttpPost("login")]
         [AllowAnonymous]
-        public async Task<IActionResult> Login(UserLoginDto userLogin)
+        public async Task<IActionResult> Login(UserLoginDTO userLogin)
         {
             try
             {
@@ -290,7 +286,7 @@ namespace Suculentas.WebApi.Controllers
                     if (result.Succeeded)
                     {
                         var appUser = await _userManager.Users.FirstOrDefaultAsync(u => u.NormalizedEmail == userLogin.Email.ToUpper());
-                        var userToReturn = _mapper.Map<UserDto>(appUser);
+                        var userToReturn = _mapper.Map<UserDTO>(appUser);
 
                         return Ok(new {
                             token = GenerateJwToken(appUser).Result,
@@ -299,11 +295,11 @@ namespace Suculentas.WebApi.Controllers
                     }
                 }
 
-                return Unauthorized();
+                return this.StatusCode(StatusCodes.Status403Forbidden);
             }
-            catch (System.Exception ex)
+            catch (System.Exception e)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou: " + ex.Message);
+                return this.StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
 
@@ -314,7 +310,7 @@ namespace Suculentas.WebApi.Controllers
                 new Claim(type: "id", user.Id.ToString()),
                 new Claim(type: "fullName", user.FullName),
                 new Claim(type: "cpf", user.CPF),
-                new Claim(type: "dataNascimento", user.DataNascimento.ToString()),
+                new Claim(type: "birthDate", user.BirthDate.ToString()),
                 new Claim(type: "phoneNumber", user.PhoneNumber),
                 new Claim(type: "email", user.Email)
             };

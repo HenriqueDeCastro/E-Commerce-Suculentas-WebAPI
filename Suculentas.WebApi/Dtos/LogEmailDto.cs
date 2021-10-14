@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Suculentas.WebApi.Dtos
+﻿namespace Suculentas.WebApi.Dtos
 {
-    public class LogEmailDto
+    public class LogEmailDTO
     {
         public int Id { get; set; }
-        public string Para { get; set; }
-        public string Assunto { get; set; }
-        public string Corpo { get; set; }
-        public string ExceptionMensagem { get; set; }
+        public string To { get; set; }
+        public string Topic { get; set; }
+        public string Body { get; set; }
+        public string ExceptionMessage { get; set; }
     }
 }

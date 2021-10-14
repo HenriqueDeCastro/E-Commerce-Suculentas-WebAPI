@@ -31,36 +31,36 @@ namespace Suculentas.WebApi.Controllers
             {
                 var status = await _repo.GetAllStatus();
 
-                var results = _mapper.Map<StatusDto>(status);
+                var results = _mapper.Map<StatusDTO>(status);
 
                 return Ok(results);
             }
-            catch (System.Exception) 
+            catch (System.Exception e) 
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
+                return this.StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
 
-        [HttpGet("{Id}")]
+        [HttpGet("{id}")]
         [AllowAnonymous]
-        public async Task<IActionResult> GetById(int Id)
+        public async Task<IActionResult> GetById(int id)
         {
             try
             {
-                var status = await _repo.GetAllStatusById(Id);
+                var status = await _repo.GetAllStatusById(id);
 
-                var results = _mapper.Map<StatusDto[]>(status);
+                var results = _mapper.Map<StatusDTO[]>(status);
 
                 return Ok(results);
             }
-            catch (System.Exception) 
+            catch (System.Exception e) 
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
+                return this.StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(StatusDto model)
+        public async Task<IActionResult> Post(StatusDTO model)
         {
             try
             {
@@ -70,22 +70,22 @@ namespace Suculentas.WebApi.Controllers
 
                 if(await _repo.SaveChangesAsync())
                 {
-                    return Created($"/status/{model.Id}",  _mapper.Map<StatusDto>(status));
+                    return Created($"/status/{model.Id}",  _mapper.Map<StatusDTO>(status));
                 }
             }
-            catch (System.Exception) 
+            catch (System.Exception e) 
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
+                return this.StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
             return BadRequest();
         }
 
-        [HttpPut("{Id}")]
-        public async Task<IActionResult> Put(int Id, StatusDto model)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, StatusDTO model)
         {
             try
             {
-                var status = await _repo.GetAllStatusById(Id);
+                var status = await _repo.GetAllStatusById(id);
 
                 if(status == null) 
                 {
@@ -98,23 +98,23 @@ namespace Suculentas.WebApi.Controllers
 
                 if(await _repo.SaveChangesAsync())
                 {
-                    return Created($"/status/{model.Id}",  _mapper.Map<StatusDto>(status));
+                    return Created($"/status/{model.Id}",  _mapper.Map<StatusDTO>(status));
                 }
             }
-            catch (System.Exception) 
+            catch (System.Exception e) 
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
+                return this.StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
 
             return BadRequest();
         }
 
-        [HttpDelete("{Id}")]
-        public async Task<IActionResult> Delete(int Id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
-                var status = await _repo.GetAllStatusById(Id);
+                var status = await _repo.GetAllStatusById(id);
 
                 if(status == null) 
                 {
@@ -127,9 +127,9 @@ namespace Suculentas.WebApi.Controllers
                     return Ok();
                 }
             }
-            catch (System.Exception) 
+            catch (System.Exception e) 
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou");
+                return this.StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
 
             return BadRequest();

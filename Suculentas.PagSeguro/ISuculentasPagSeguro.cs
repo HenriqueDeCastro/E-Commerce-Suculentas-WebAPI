@@ -5,8 +5,8 @@ namespace Suculentas.PagSeguro
 {
     public interface ISuculentasPagSeguro
     {
-        string Checkout(string emailUsuario, string token, string urlCheckout, List<PagSeguroItemDTO> itens, string reference);
-        ConsultaTransacaoPagSeguroTransactionDTO ConsultaPorCodigoReferencia(string emailUsuario, string token, string urlConsultaTransacao, string codigoReferencia);
-        bool CancelarTransacao(string emailUsuario, string token, string urlCancelamento, string transactionCode);
+        string Checkout(string emailUser, string token, string urlCheckout, List<PagSeguroItemDTO> items, string reference);
+        PagSeguroTransactionDTO ConsultByReferenceCode(string emailUser, string token, string urlConsultaTransaction, string referenceCode);
+        bool CancelTransaction(string emailUser, string token, string urlCancel, string transactionCode);
     }
 }

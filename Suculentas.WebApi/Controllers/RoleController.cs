@@ -1,19 +1,12 @@
 using System;
 using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
 using Suculentas.Domain.Identity;
-using Suculentas.Repository;
 using Suculentas.WebApi.Dtos;
 
 namespace Suculentas.WebApi.Controllers
@@ -33,7 +26,7 @@ namespace Suculentas.WebApi.Controllers
             _userManager = userManager;
         }
 
-        [HttpGet("GetRole")]
+        [HttpGet("getRole")]
         public async Task<IActionResult> GetRoles() 
         {
             try
@@ -42,54 +35,82 @@ namespace Suculentas.WebApi.Controllers
 
                 return Ok(roles);
             }
-            catch (System.Exception ex)
+            catch (System.Exception e)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou: " + ex.Message);
+                return this.StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
 
-        [HttpPost("CreateRole")]
-        public async Task<IActionResult> CreateRole(RoleDto roleDto) 
+        [HttpGet("getRoleAndUsers")]
+        public async Task<IActionResult> GetRoleAndUsers()
         {
             try
             {
-                var retorno = await _roleManager.CreateAsync(new Role { Name = roleDto.Name });
+                var roles = await _roleManager.Roles.ToListAsync();
+                List<UserByRoleDTO> roleByUser = new List<UserByRoleDTO>();
 
-                return Ok(retorno);
+                foreach (var role in roles)
+                {
+                    var users = await _userManager.GetUsersInRoleAsync(role.Name);
+                    var usersMapper = _mapper.Map<List<UserDTO>>(users);
+
+                    UserByRoleDTO valueLocal = new UserByRoleDTO();
+                    valueLocal.RoleName = role.Name;
+                    valueLocal.Users = usersMapper;
+
+                    roleByUser.Add(valueLocal);
+                }
+
+                return Ok(roleByUser);
             }
-            catch (System.Exception ex)
+            catch (System.Exception e)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou: " + ex.Message);
+                return this.StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
 
-        [HttpPut("UpdateUserRole")]
-        public async Task<IActionResult> UpdateUserRole(UpdateUserRoleDto model) 
+        [HttpPost("createRole")]
+        public async Task<IActionResult> CreateRole(RoleDTO roleDto) 
+        {
+            try
+            {
+                var returnValue = await _roleManager.CreateAsync(new Role { Name = roleDto.Name });
+
+                return Ok(returnValue);
+            }
+            catch (System.Exception e)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+            }
+        }
+
+        [HttpPut("updateUserRole")]
+        public async Task<IActionResult> UpdateUserRole(UpdateUserRoleDTO model) 
         {
             try
             {
                 var user = await _userManager.FindByEmailAsync(model.Email);
-                var resultado = new IdentityResult();
+                var result = new IdentityResult();
 
                 if(user != null) 
                 {
 
                     if(model.Delete)
-                        resultado = await _userManager.RemoveFromRoleAsync(user, model.Role);
+                        result = await _userManager.RemoveFromRoleAsync(user, model.Role);
 
                     else
-                        resultado = await _userManager.AddToRoleAsync(user, model.Role);
+                        result = await _userManager.AddToRoleAsync(user, model.Role);
                 }
                 else 
                 {
                     return this.StatusCode(StatusCodes.Status404NotFound, "Usuario não encontrado!");
                 }
 
-                return Ok(resultado);
+                return Ok(result);
             }
-            catch (System.Exception ex)
+            catch (System.Exception e)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Banco de dados falhou: " + ex.Message);
+                return this.StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
         }
     }

@@ -1,0 +1,3 @@
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Email\bin\Release\netstandard2.1\publish\Suculentas.Email.dll
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Email\bin\Release\netstandard2.1\publish\Suculentas.Email.deps.json
+C:\Users\castr\Documents\Projetos\Suculentas da Rô\Suculentas_da_Ro_Server\Suculentas.Email\bin\Release\netstandard2.1\publish\Suculentas.Email.pdb
