@@ -98,7 +98,7 @@ namespace Suculentas.WebApi.Controllers
         }
 
         [HttpGet("getStatusByUser")]
-        public async Task<IActionResult> GetByUserId(int userId, int statusId, int currentPage)
+        public async Task<IActionResult> GetStatusByUser(int userId, int statusId, int currentPage)
         {
             try
             {
@@ -113,7 +113,7 @@ namespace Suculentas.WebApi.Controllers
         }
 
         [HttpGet("getByStatus")]
-        public async Task<IActionResult> GetByStatusId(int statusId, int currentPage)
+        public async Task<IActionResult> GetByStatus(int statusId, int currentPage)
         {
             try
             {
@@ -171,73 +171,89 @@ namespace Suculentas.WebApi.Controllers
 
                 _repo.Add(sale);
 
-                if(await _repo.SaveChangesAsync()){
+                if(await _repo.SaveChangesAsync()) {
 
-                    List<PagSeguroItemDTO> items = new List<PagSeguroItemDTO>();
-                    List<Product> unavailableProducts = new List<Product>();
-
-                    foreach (Order order in orders)
+                    try
                     {
-                        var product = await _repo.GetAllProductById(order.ProductId);
-                        bool productAvailable = _business.CheckProductAvailable(product, order.Amount);
+                        List<PagSeguroItemDTO> items = new List<PagSeguroItemDTO>();
+                        List<Product> unavailableProducts = new List<Product>();
 
-                        if(productAvailable) {
+                        foreach (Order order in orders)
+                        {
+                            var product = await _repo.GetAllProductById(order.ProductId);
+                            ProductType typeOrder = await _repo.GetAllProductTypeByName(_config.GetSection("AppSettings:ProductType:Encomenda").Value);
+                            bool productAvailable = _business.CheckProductAvailable(product, order.Amount, typeOrder.Id);
 
-                            var orderMapper = _mapper.Map<Order>(order);
-                            orderMapper.SaleId = sale.Id;
-                            _repo.Add(orderMapper);
+                            if (productAvailable)
+                            {
 
-                            PagSeguroItemDTO item = new PagSeguroItemDTO();
-                            item.itemId = product.Id.ToString();
-                            item.itemDescription = product.Name;
-                            item.itemAmount = product.Price.ToString("N2", CultureInfo.InvariantCulture).Replace(",", "");
-                            item.itemQuantity = order.Amount.ToString();
-                            item.itemWeight = "0";
+                                if (unavailableProducts.Count == 0)
+                                {
+                                    var orderMapper = _mapper.Map<Order>(order);
+                                    orderMapper.SaleId = sale.Id;
+                                    _repo.Add(orderMapper);
 
-                            items.Add(item);
-                        } 
-                        else {
-                            unavailableProducts.Add(product);
+                                    PagSeguroItemDTO item = new PagSeguroItemDTO();
+                                    item.itemId = product.Id.ToString();
+                                    item.itemDescription = product.Name;
+                                    item.itemAmount = product.Price.ToString("N2", CultureInfo.InvariantCulture).Replace(",", "");
+                                    item.itemQuantity = order.Amount.ToString();
+                                    item.itemWeight = "0";
+
+                                    items.Add(item);
+                                }
+                            }
+                            else
+                            {
+                                unavailableProducts.Add(product);
+                            }
+                        }
+
+                        if (unavailableProducts.Count > 0)
+                        {
+                            return this.StatusCode(StatusCodes.Status404NotFound, unavailableProducts);
+                        }
+
+                        if (await _repo.SaveChangesAsync())
+                        {
+
+                            if (sale.Shipping)
+                            {
+                                PagSeguroItemDTO item = new PagSeguroItemDTO();
+                                item.itemId = "Jadlog";
+                                item.itemDescription = "Frete";
+                                item.itemAmount = sale.ShippingValue.ToString().Replace(",", ".");
+                                item.itemQuantity = "1";
+                                item.itemWeight = "0";
+
+                                items.Add(item);
+                            }
+
+                            string urlPagSeguro = _config.GetSection("AppSettings:PagSeguro:Url_V2").Value + "checkout";
+                            string token = _config.GetSection("AppSettings:PagSeguro:Token").Value;
+                            string email = _config.GetSection("AppSettings:PagSeguro:Email").Value;
+
+                            try
+                            {
+                                sale.TransactionCode = _pagSeguro.Checkout(email, token, urlPagSeguro, items, sale.Id.ToString());
+                                _repo.Update(sale);
+                            }
+                            catch (System.Exception e)
+                            {
+                                _repo.Delete(sale);
+                                return this.StatusCode(StatusCodes.Status503ServiceUnavailable, e.Message);
+                            }
+
+                            if (await _repo.SaveChangesAsync())
+                            {
+                                return Created($"/sale/{sale.Id}", _mapper.Map<SaleDTO>(sale));
+                            }
                         }
                     }
-
-                    if(unavailableProducts.Count > 0) {
-                        return this.StatusCode(StatusCodes.Status404NotFound, unavailableProducts);
-                    }
-
-                    if(await _repo.SaveChangesAsync()) {
-
-                        if(sale.Shipping) {
-                            PagSeguroItemDTO item = new PagSeguroItemDTO();
-                            item.itemId = "Jadlog";
-                            item.itemDescription = "Frete";
-                            item.itemAmount = sale.ShippingValue.ToString().Replace(",", ".");
-                            item.itemQuantity = "1";
-                            item.itemWeight = "0";
-
-                            items.Add(item);
-                        }
-
-                        string urlPagSeguro = _config.GetSection("PagSeguro:Url_V2").Value + "checkout";
-                        string token = _config.GetSection("PagSeguro:Token").Value;
-                        string email = _config.GetSection("PagSeguro:Email").Value;
-
-                        try
-                        {
-                            sale.TrackingCode = _pagSeguro.Checkout(email, token, urlPagSeguro, items, sale.Id.ToString());
-                            _repo.Update(sale);   
-                        }
-                        catch (System.Exception e)
-                        {
-                            sale.StatusId = Int16.Parse(_config.GetSection("AppSettings:StatusVendas:StatusSales").Value);
-                            _repo.Update(sale);
-
-                            return this.StatusCode(StatusCodes.Status503ServiceUnavailable, e.Message);
-                        }
-                        
-                        if(await _repo.SaveChangesAsync()) {
-                            return Created($"/sale/{sale.Id}",  _mapper.Map<SaleDTO>(sale));
-                        } 
+                    catch (Exception)
+                    {
+                        _repo.Delete(sale);
+                        throw;
                     }
                 }
             }
@@ -245,6 +261,7 @@ namespace Suculentas.WebApi.Controllers
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, e.InnerException.Message);
             }
+
             return BadRequest();
         }
 

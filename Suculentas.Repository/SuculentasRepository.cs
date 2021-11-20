@@ -304,8 +304,7 @@ namespace Suculentas.Repository
 
         public async Task<ProductType> GetAllProductTypeByName(string name)
         {
-            IQueryable<ProductType> query = _Context.productTypes
-                .Include(c => c.Products);
+            IQueryable<ProductType> query = _Context.productTypes;
 
             query = query.OrderBy(c => c.Name)
                 .Where(c => c.Name == name);
@@ -423,8 +422,13 @@ namespace Suculentas.Repository
         {
             IQueryable<Sale> querySales = _Context.Sales.Where(v => v.UserId == userId);
 
-            IQueryable<SaleStatusCount> query = querySales.GroupBy(x => x.StatusId)
-                .Select(x => new SaleStatusCount { StatusId = x.Key, CountSale = x.Count() });
+            IQueryable<SaleStatusCount> query = querySales
+                .GroupBy(s => s.StatusId)
+                .Select(x => new SaleStatusCount { 
+                    StatusId = x.Key, 
+                    StatusName = _Context.Status.Where(s => s.Id == x.Key).Select(s=> s.Name).FirstOrDefault(),
+                    CountSale = x.Count() 
+                });
 
             query = query.OrderByDescending(c => c.StatusId);
 

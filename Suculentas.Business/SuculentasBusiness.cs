@@ -63,9 +63,9 @@ namespace Suculentas.Business
         }
 
         // VENDA
-        public bool CheckProductAvailable(Product product, int quantity) {
+        public bool CheckProductAvailable(Product product, int quantity, int orderId) {
             
-            if (product.ProductTypeId == Int16.Parse(_config.GetSection("AppSettings:ProductType:Encomenda").Value)) {
+            if (product.ProductTypeId == orderId) {
                 if (product.Active == true && product.MaximumQuantity > 0 && product.MaximumQuantity >= quantity) {
                     return true;
                 } else {

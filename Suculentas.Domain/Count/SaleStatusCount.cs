@@ -7,7 +7,7 @@ namespace Suculentas.Domain
     public class SaleStatusCount
     {
         public int StatusId { get; set; }
-        public int StatusName { get; set; }
+        public string StatusName { get; set; }
         public int CountSale { get; set; }
     }
 }
