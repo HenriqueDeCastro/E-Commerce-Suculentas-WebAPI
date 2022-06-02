@@ -1,9 +1,15 @@
-## Suculentas da Rô - Servidor
+# Succulents Api
 
-### Gerar release:
--- dotnet publish -c Release -o .\Suculentas.Publish
+### Description
+<div>
+  <p>
+    Succulents plants e-commerce API, with authentication features, permissions management, triggering of notifications via email and password reset.
+  </p>
+</div>
 
-### Gerar Migration e DataBase
--- cd .\Suculentas.Repository\
--- dotnet ef --startup-project ..\Suculentas.WebApi\  migrations add init
--- dotnet ef --startup-project ..\Suculentas.WebApi\ database update
+### Technologies employed
+<div>
+  <img alt="H-CSHARP" src="https://img.shields.io/badge/Csharp-7D5B8C?style=for-the-badge&logo=csharp&logoColor=white">
+  <img alt="H-MYSQL" src="https://img.shields.io/badge/mysql-002F5E?style=for-the-badge&logo=mysql&logoColor=white">
+  <img alt="H-DOTNET" src="https://img.shields.io/badge/.NET%20CORE-9966CC?style=for-the-badge&logo=DOTNET&logoColor=white">
+</div>
