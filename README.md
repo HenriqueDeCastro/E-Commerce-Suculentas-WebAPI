@@ -7,7 +7,7 @@
   </p>
 </div>
 
-### Technologies employed
+### Technologies employed:
 <div>
   <img alt="H-CSHARP" src="https://img.shields.io/badge/Csharp-7D5B8C?style=for-the-badge&logo=csharp&logoColor=white">
   <img alt="H-MYSQL" src="https://img.shields.io/badge/mysql-002F5E?style=for-the-badge&logo=mysql&logoColor=white">
