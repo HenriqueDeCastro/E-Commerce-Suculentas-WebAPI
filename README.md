@@ -1,6 +1,6 @@
 # Succulents Api
 
-### Description
+### Description:
 <div>
   <p>
     Succulents plants e-commerce API, with authentication features, permissions management, triggering of notifications via email and password reset.
